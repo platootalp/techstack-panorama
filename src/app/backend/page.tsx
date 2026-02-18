@@ -773,20 +773,6 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'testing',
-    name: '测试工具',
-    icon: '🧪',
-    color: '#DC2626',
-    problem: '代码质量',
-    description: 'Rust内置测试框架及扩展。',
-    mainstream: [
-      { name: '内置test', description: 'cargo test', popularity: 'high' },
-      { name: 'mockall', description: 'Mock框架', popularity: 'high' },
-      { name: 'proptest', description: '属性测试', popularity: 'medium' },
-      { name: 'tokio-test', description: '异步测试', popularity: 'medium' },
-    ]
-  },
-  {
     id: 'mq',
     name: '消息队列',
     icon: '📨',
