@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Suspense } from 'react'
 import './globals.css'
 import { Sidebar } from '@/components/sidebar'
 import { ErrorBoundary } from '@/components/error-boundary'
-import { PageSkeleton } from '@/components/page-skeleton'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,9 +22,7 @@ export default function RootLayout({
         <Sidebar />
         <main className="ml-64">
           <ErrorBoundary>
-            <Suspense fallback={<PageSkeleton />}>
-              {children}
-            </Suspense>
+            {children}
           </ErrorBoundary>
         </main>
       </body>
