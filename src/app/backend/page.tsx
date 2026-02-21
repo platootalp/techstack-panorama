@@ -1,23 +1,7 @@
 'use client'
 
-import { useState, memo } from 'react'
-import { cn } from '@/lib/utils'
-
-interface TechItem {
-  name: string
-  description: string
-  popularity: 'high' | 'medium' | 'rising'
-}
-
-interface TechCategory {
-  id: string
-  name: string
-  icon: string
-  color: string
-  problem: string
-  description: string
-  mainstream: TechItem[]
-}
+import { TechCategoryCard } from '@/components/tech'
+import type { TechCategory } from '@/data/tech/types'
 
 const pythonCategories: TechCategory[] = [
   {
@@ -1032,80 +1016,8 @@ const nodejsCategories: TechCategory[] = [
   },
 ]
 
-const PopularityBadge = memo(({ popularity }: { popularity: 'high' | 'medium' | 'rising' }) => {
-  const badgeClasses = {
-    high: 'badge-mainstream',
-    medium: 'badge-common',
-    rising: 'badge-rising',
-  }
-  const labels = {
-    high: '主流',
-    medium: '常用',
-    rising: '新星',
-  }
-
-  return (
-    <span className={cn('text-[11px] px-2 py-0.5 rounded-full', badgeClasses[popularity])}>
-      {labels[popularity]}
-    </span>
-  )
-})
-
-PopularityBadge.displayName = 'PopularityBadge'
-
-const TechCard = memo(({ category }: { category: TechCategory }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-
-  return (
-    <div
-      onClick={() => setIsExpanded(!isExpanded)}
-      className="tech-card"
-      style={{ borderColor: category.color + '30' }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px]"
-        style={{ background: 'linear-gradient(90deg, ' + category.color + ', ' + category.color + '80)' }}
-      />
-
-      <div className="flex items-center gap-3 mb-4">
-        <span className="text-3xl">{category.icon}</span>
-        <div>
-          <h3 className="text-xl font-semibold text-white m-0">{category.name}</h3>
-          <span className="text-[13px] font-medium" style={{ color: category.color }}>{category.problem}</span>
-        </div>
-      </div>
-
-      <p className="text-sm text-slate-400 mb-4 leading-relaxed m-0">{category.description}</p>
-
-      <div className="flex flex-wrap gap-2">
-        {category.mainstream.slice(0, isExpanded ? undefined : 3).map((tech) => (
-          <div
-            key={tech.name}
-            className="tech-tag"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className="text-[13px] font-medium text-white">{tech.name}</span>
-            <PopularityBadge popularity={tech.popularity} />
-          </div>
-        ))}
-      </div>
-
-      {category.mainstream.length > 3 && (
-        <div className="flex items-center gap-1 mt-3 text-xs text-slate-500">
-          <span>{isExpanded ? '收起' : '展开更多 (' + (category.mainstream.length - 3) + '项)'}</span>
-          <span
-            className="transition-transform duration-200"
-            style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)' }}
-          >
-            ▼
-          </span>
-        </div>
-      )}
-    </div>
-  )
-})
-
-TechCard.displayName = 'TechCard'
+import { useState } from 'react'
+import { cn } from '@/lib/utils'
 
 const languageTabs = [
   { id: 'python', name: 'Python', color: '#F59E0B', gradient: 'linear-gradient(135deg, #FBBF24, #F59E0B, #D97706)', desc: '异步API开发' },
@@ -1181,7 +1093,7 @@ export default function BackendStack() {
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {categories.map((category) => (
-          <TechCard key={category.id} category={category} />
+          <TechCategoryCard key={category.id} category={category} />
         ))}
       </div>
 
