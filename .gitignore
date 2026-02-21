@@ -155,3 +155,5 @@ PROJECT-MERGE-SUMMARY.md
 .eslintcache
 .stylelintcache
 .parcel-cache
+# Worktrees
+.worktrees/
