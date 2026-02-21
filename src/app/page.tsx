@@ -1,36 +1,7 @@
 import Link from 'next/link'
 import { Code2, Server, Cpu, Database, Bot, Network, ArrowRight, Star } from 'lucide-react'
 import { TechGrid } from '@/components/tech/TechGrid'
-import { techScoreData } from '@/data/tech/score-data'
-import type { TechDetail } from '@/data/tech/types'
-
-// 生成模拟的 TechDetail 数据（用于展示）
-const mockTechDetails: TechDetail[] = Object.entries(techScoreData).map(([id, scores]) => ({
-  id,
-  name: id.charAt(0).toUpperCase() + id.slice(1).replace(/-/g, ' '),
-  category: 'frontend',
-  subcategory: '框架',
-  description: '',
-  tagline: '现代开发框架',
-  version: 'latest',
-  pros: [],
-  cons: [],
-  bestFor: [],
-  notFor: [],
-  learningCurve: 'intermediate',
-  ecosystemScore: scores.ecosystem,
-  popularity: { githubStars: scores.popularity * 1000 },
-  companyUsers: [],
-  createdYear: 2020,
-  maintainedBy: 'Community',
-  officialUrl: '',
-  githubUrl: '',
-  documentationUrl: '',
-  alternatives: [],
-  scores,
-  isVisible: scores.total >= 70,
-  isEmerging: scores.total < 70 && scores.maintenance >= 60
-}))
+import { getActiveTech, getRecommendedTech } from '@/data/tech/tech-database'
 
 // 静态数据定义
 const techModules = [
@@ -123,15 +94,6 @@ export default function Home() {
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             探索2025年主流技术栈,掌握前沿开发技术,助力职业发展
           </p>
-        </div>
-
-        {/* Featured Technologies */}
-        <div className="mt-16 max-w-6xl mx-auto">
-          <div className="flex items-center gap-2 mb-8">
-            <Star className="w-6 h-6 text-yellow-400" />
-            <h2 className="text-2xl font-bold text-white">精选技术（评分筛选）</h2>
-          </div>
-          <TechGrid technologies={mockTechDetails} />
         </div>
 
         {/* Cards Grid */}

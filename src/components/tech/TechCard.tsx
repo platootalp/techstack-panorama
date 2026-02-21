@@ -19,9 +19,9 @@ export function TechCard({ tech }: TechCardProps) {
       
       <div className="tech-meta">
         <span className="tech-category">{tech.subcategory}</span>
-        {tech.isEmerging && (
-          <span className="tech-emerging-badge">新兴</span>
-        )}
+        <span className={`tech-status-badge tech-status-${tech.status}`}>
+          {tech.status === 'active' ? '活跃' : '归档'}
+        </span>
       </div>
     </div>
   )

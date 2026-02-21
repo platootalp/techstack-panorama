@@ -5,12 +5,12 @@ import type { TechDetail } from '@/data/tech/types'
 
 interface TechGridProps {
   technologies: TechDetail[]
-  showEmerging?: boolean
+  showArchived?: boolean
 }
 
-export function TechGrid({ technologies, showEmerging = false }: TechGridProps) {
+export function TechGrid({ technologies, showArchived = false }: TechGridProps) {
   const visibleTechs = technologies.filter(tech => 
-    tech.isVisible || (showEmerging && tech.isEmerging)
+    tech.status === 'active' || showArchived
   )
   
   return (

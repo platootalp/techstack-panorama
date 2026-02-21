@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { Home, Code2, Server, Bot, Network } from 'lucide-react'
+import { Home, Code2, Server, Bot, Network, Layers, Archive } from 'lucide-react'
 
 const routes = [
   {
@@ -11,6 +11,12 @@ const routes = [
     icon: Home,
     href: '/',
     color: 'text-sky-500',
+  },
+  {
+    label: '技术栈全景',
+    icon: Layers,
+    href: '/tech-stack',
+    color: 'text-amber-500',
   },
   {
     label: '前端技术栈',
