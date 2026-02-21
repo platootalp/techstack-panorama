@@ -1,22 +1,7 @@
 'use client'
 
-import { useState, memo } from 'react'
-
-interface TechItem {
-  name: string
-  description: string
-  popularity: 'high' | 'medium' | 'rising'
-}
-
-interface TechCategory {
-  id: string
-  name: string
-  icon: string
-  color: string
-  problem: string
-  description: string
-  mainstream: TechItem[]
-}
+import { TechCategoryCard } from '@/components/tech'
+import type { TechCategory } from '@/data/tech/types'
 
 // LLM算法 - 底层技术（模型、训练、优化）
 const llmAlgorithmCategories: TechCategory[] = [
@@ -327,135 +312,7 @@ const llmApplicationCategories: TechCategory[] = [
   },
 ]
 
-const PopularityBadge = memo(({ popularity }: { popularity: 'high' | 'medium' | 'rising' }) => {
-  const styles = {
-    high: { bg: '#10B98115', text: '#10B981', label: '主流' },
-    medium: { bg: '#F59E0B15', text: '#F59E0B', label: '常用' },
-    rising: { bg: '#8B5CF615', text: '#8B5CF6', label: '新星' },
-  }
-  const style = styles[popularity]
-
-  return (
-    <span style={{
-      padding: '2px 8px',
-      borderRadius: '12px',
-      fontSize: '11px',
-      fontWeight: 500,
-      backgroundColor: style.bg,
-      color: style.text,
-    }}>
-      {style.label}
-    </span>
-  )
-})
-
-PopularityBadge.displayName = 'PopularityBadge'
-
-const TechCard = memo(({ category }: { category: TechCategory }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-
-  return (
-    <div
-      onClick={() => setIsExpanded(!isExpanded)}
-      style={{
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-        borderRadius: '16px',
-        padding: '24px',
-        border: `1px solid ${category.color}30`,
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: '3px',
-        background: `linear-gradient(90deg, ${category.color}, ${category.color}80)`,
-      }} />
-
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px',
-        marginBottom: '16px',
-      }}>
-        <span style={{ fontSize: '32px' }}>{category.icon}</span>
-        <div>
-          <h3 style={{
-            margin: 0,
-            fontSize: '20px',
-            fontWeight: 600,
-            color: '#fff',
-          }}>{category.name}</h3>
-          <span style={{
-            fontSize: '13px',
-            color: category.color,
-            fontWeight: 500,
-          }}>{category.problem}</span>
-        </div>
-      </div>
-
-      <p style={{
-        margin: '0 0 16px 0',
-        fontSize: '14px',
-        color: '#94a3b8',
-        lineHeight: 1.6,
-      }}>{category.description}</p>
-
-      <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '8px',
-      }}>
-        {category.mainstream.slice(0, isExpanded ? undefined : 3).map((tech) => (
-          <div
-            key={tech.name}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 12px',
-              background: '#ffffff08',
-              borderRadius: '8px',
-              border: '1px solid #ffffff10',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span style={{
-              fontSize: '13px',
-              fontWeight: 500,
-              color: '#fff',
-            }}>{tech.name}</span>
-            <PopularityBadge popularity={tech.popularity} />
-          </div>
-        ))}
-      </div>
-
-      {category.mainstream.length > 3 && (
-        <div style={{
-          marginTop: '12px',
-          fontSize: '12px',
-          color: '#64748b',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '4px',
-        }}>
-          <span>{isExpanded ? '收起' : `展开更多 (${category.mainstream.length - 3}项)`}</span>
-          <span style={{
-            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)',
-            transition: 'transform 0.2s ease',
-          }}>▼</span>
-        </div>
-      )}
-    </div>
-  )
-})
-
-TechCard.displayName = 'TechCard'
+import { useState } from 'react'
 
 export default function AIStack() {
   const [activeTab, setActiveTab] = useState<'algorithm' | 'application'>('algorithm')
@@ -609,7 +466,7 @@ export default function AIStack() {
         gap: '24px',
       }}>
         {categories.map((category) => (
-          <TechCard key={category.id} category={category} />
+          <TechCategoryCard key={category.id} category={category} />
         ))}
       </div>
 
