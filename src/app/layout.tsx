@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className={inter.className}>
         <Sidebar />
-        <main className="ml-64">
+        <main id="main-content" className="transition-all duration-300 ease-in-out" style={{ marginLeft: 'var(--sidebar-width, 16rem)' }}>
           <ErrorBoundary>
             {children}
           </ErrorBoundary>

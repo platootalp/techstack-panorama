@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { cn } from '@/lib/utils'
 
 interface TechItem {
   name: string
@@ -300,25 +301,19 @@ const techCategories: TechCategory[] = [
 ]
 
 const PopularityBadge = ({ popularity }: { popularity: 'high' | 'medium' | 'rising' }) => {
-  const styles = {
-    high: { bg: '#10B98115', text: '#10B981', label: '主流' },
-    medium: { bg: '#F59E0B15', text: '#F59E0B', label: '常用' },
-    rising: { bg: '#8B5CF615', text: '#8B5CF6', label: '新星' },
-  }
-  const style = styles[popularity]
+  const badgeClass = {
+    high: 'badge-mainstream',
+    medium: 'badge-common',
+    rising: 'badge-rising',
+  }[popularity] || 'badge-common'
 
-  return (
-    <span style={{
-      padding: '2px 8px',
-      borderRadius: '12px',
-      fontSize: '11px',
-      fontWeight: 500,
-      backgroundColor: style.bg,
-      color: style.text,
-    }}>
-      {style.label}
-    </span>
-  )
+  const label = {
+    high: '主流',
+    medium: '常用',
+    rising: '新星',
+  }[popularity] || '常用'
+
+  return <span className={badgeClass}>{label}</span>
 }
 
 const TechCard = ({ category }: { category: TechCategory }) => {
@@ -327,98 +322,59 @@ const TechCard = ({ category }: { category: TechCategory }) => {
   return (
     <div
       onClick={() => setIsExpanded(!isExpanded)}
+      className="tech-card group"
       style={{
-        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-        borderRadius: '16px',
-        padding: '24px',
-        border: `1px solid ${category.color}30`,
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        position: 'relative',
-        overflow: 'hidden',
+        borderColor: `${category.color}30`,
       }}
     >
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: '3px',
-        background: `linear-gradient(90deg, ${category.color}, ${category.color}80)`,
-      }} />
+      <div
+        className="absolute top-0 left-0 right-0 h-[3px]"
+        style={{
+          background: `linear-gradient(90deg, ${category.color}, ${category.color}80)`,
+        }}
+      />
 
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px',
-        marginBottom: '16px',
-      }}>
-        <span style={{ fontSize: '32px' }}>{category.icon}</span>
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-3xl">{category.icon}</span>
         <div>
-          <h3 style={{
-            margin: 0,
-            fontSize: '20px',
-            fontWeight: 600,
-            color: '#fff',
-          }}>{category.name}</h3>
-          <span style={{
-            fontSize: '13px',
-            color: category.color,
-            fontWeight: 500,
-          }}>{category.problem}</span>
+          <h3 className="text-xl font-semibold text-white m-0">{category.name}</h3>
+          <span
+            className="text-sm font-medium"
+            style={{ color: category.color }}
+          >
+            {category.problem}
+          </span>
         </div>
       </div>
 
-      <p style={{
-        margin: '0 0 16px 0',
-        fontSize: '14px',
-        color: '#94a3b8',
-        lineHeight: 1.6,
-      }}>{category.description}</p>
+      <p className="text-sm text-slate-400 leading-relaxed m-0 mb-4">
+        {category.description}
+      </p>
 
-      <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '8px',
-      }}>
+      <div className="flex flex-wrap gap-2">
         {category.mainstream.slice(0, isExpanded ? undefined : 3).map((tech) => (
           <div
             key={tech.name}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 12px',
-              background: '#ffffff08',
-              borderRadius: '8px',
-              border: '1px solid #ffffff10',
-            }}
+            className="tech-tag"
             onClick={(e) => e.stopPropagation()}
           >
-            <span style={{
-              fontSize: '13px',
-              fontWeight: 500,
-              color: '#fff',
-            }}>{tech.name}</span>
+            <span className="text-sm font-medium text-white">{tech.name}</span>
             <PopularityBadge popularity={tech.popularity} />
           </div>
         ))}
       </div>
 
       {category.mainstream.length > 3 && (
-        <div style={{
-          marginTop: '12px',
-          fontSize: '12px',
-          color: '#64748b',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '4px',
-        }}>
+        <div className="mt-3 text-xs text-slate-500 flex items-center gap-1">
           <span>{isExpanded ? '收起' : `展开更多 (${category.mainstream.length - 3}项)`}</span>
-          <span style={{
-            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)',
-            transition: 'transform 0.2s ease',
-          }}>▼</span>
+          <span
+            className={cn(
+              'transition-transform duration-200',
+              isExpanded ? 'rotate-180' : 'rotate-0'
+            )}
+          >
+            ▼
+          </span>
         </div>
       )}
     </div>
@@ -427,102 +383,41 @@ const TechCard = ({ category }: { category: TechCategory }) => {
 
 export default function InfrastructureStack() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(180deg, #0f0f1a 0%, #0f1a2e 50%, #0f0f1a 100%)',
-      padding: '40px 20px',
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto 48px auto',
-        textAlign: 'center',
-      }}>
-        <h1 style={{
-          fontSize: '42px',
-          fontWeight: 700,
-          background: 'linear-gradient(135deg, #60A5FA, #3B82F6, #2563EB)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          margin: '0 0 16px 0',
-          letterSpacing: '-0.02em',
-        }}>
-          基础设施技术栈
-        </h1>
-        <p style={{
-          fontSize: '18px',
-          color: '#94a3b8',
-          margin: 0,
-          maxWidth: '600px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          lineHeight: 1.6,
-        }}>
-          云原生、DevOps、微服务 - 现代应用基础设施全景
-        </p>
-      </div>
+    <div className="page-container">
+      <div className="page-content">
+        <div className="page-header">
+          <h1 className="page-title">基础设施技术栈</h1>
+          <p className="page-subtitle">
+            云原生、DevOps、微服务 - 现代应用基础设施全景
+          </p>
+        </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto 32px auto',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '24px',
-        flexWrap: 'wrap',
-      }}>
-        {[
-          { color: '#10B981', label: '主流 - 广泛采用' },
-          { color: '#F59E0B', label: '常用 - 稳定使用' },
-          { color: '#8B5CF6', label: '新星 - 快速崛起' },
-        ].map((item, i) => (
-          <div key={i} style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '8px 16px',
-            background: '#ffffff08',
-            borderRadius: '24px',
-            border: '1px solid #ffffff10',
-          }}>
-            <span style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: item.color,
-            }} />
-            <span style={{ fontSize: '13px', color: '#94a3b8' }}>{item.label}</span>
+        <div className="legend-container">
+          <div className="legend-item">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="text-sm text-slate-400">主流 - 广泛采用</span>
           </div>
-        ))}
-      </div>
+          <div className="legend-item">
+            <span className="w-2 h-2 rounded-full bg-amber-500" />
+            <span className="text-sm text-slate-400">常用 - 稳定使用</span>
+          </div>
+          <div className="legend-item">
+            <span className="w-2 h-2 rounded-full bg-purple-500" />
+            <span className="text-sm text-slate-400">新星 - 快速崛起</span>
+          </div>
+        </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-        gap: '24px',
-      }}>
-        {techCategories.map((category) => (
-          <TechCard key={category.id} category={category} />
-        ))}
-      </div>
+        <div className="tech-grid">
+          {techCategories.map((category) => (
+            <TechCard key={category.id} category={category} />
+          ))}
+        </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '48px auto 0 auto',
-        textAlign: 'center',
-        padding: '24px',
-        background: '#ffffff05',
-        borderRadius: '16px',
-        border: '1px solid #ffffff10',
-      }}>
-        <p style={{
-          margin: 0,
-          fontSize: '14px',
-          color: '#64748b',
-        }}>
-          💡 点击卡片可展开查看更多技术 | 基础设施选型直接影响系统的可靠性、可扩展性和运维成本
-        </p>
+        <div className="footer-note">
+          <p className="text-sm text-slate-500 m-0">
+            💡 点击卡片可展开查看更多技术 | 基础设施选型直接影响系统的可靠性、可扩展性和运维成本
+          </p>
+        </div>
       </div>
     </div>
   )
