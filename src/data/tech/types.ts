@@ -144,3 +144,25 @@ export interface TechDetail {
 export interface TechCollection {
   [key: string]: TechDetail
 }
+
+/**
+ * 技术项 - 单个技术方案
+ */
+export interface TechItem {
+  name: string
+  description: string
+  popularity: 'high' | 'medium' | 'rising'
+}
+
+/**
+ * 技术类别 - 包含多个技术项的类别
+ */
+export interface TechCategory {
+  id: string
+  name: string
+  icon: string
+  color: string
+  problem: string
+  description: string
+  mainstream: TechItem[]
+}
