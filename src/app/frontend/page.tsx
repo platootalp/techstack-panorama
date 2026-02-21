@@ -1,21 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { cn } from '@/lib/utils'
-
-interface TechCategory {
-  id: string
-  name: string
-  icon: string
-  color: string
-  problem: string
-  description: string
-  mainstream: {
-    name: string
-    description: string
-    popularity: 'high' | 'medium' | 'rising'
-  }[]
-}
+import { TechCategoryCard } from '@/components/tech'
+import type { TechCategory } from '@/data/tech/types'
 
 const techCategories: TechCategory[] = [
   {
@@ -174,94 +160,7 @@ const techCategories: TechCategory[] = [
   },
 ]
 
-const PopularityBadge = ({ popularity }: { popularity: string }) => {
-  const badgeClass = {
-    high: 'badge-mainstream',
-    medium: 'badge-common',
-    rising: 'badge-rising',
-  }[popularity] || 'badge-common'
 
-  const label = {
-    high: '主流',
-    medium: '常用',
-    rising: '新星',
-  }[popularity] || '常用'
-
-  return <span className={badgeClass}>{label}</span>
-}
-
-const TechCard = ({ category }: { category: TechCategory }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-
-  return (
-    <div
-      onClick={() => setIsExpanded(!isExpanded)}
-      className="tech-card group"
-      style={{
-        borderColor: `${category.color}30`,
-      }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px]"
-        style={{
-          background: `linear-gradient(90deg, ${category.color}, ${category.color}80)`,
-        }}
-      />
-
-      <div className="flex items-center gap-3 mb-4">
-        <span className="text-3xl">{category.icon}</span>
-        <div>
-          <h3 className="text-xl font-semibold text-white m-0">{category.name}</h3>
-          <span
-            className="text-sm font-medium"
-            style={{ color: category.color }}
-          >
-            {category.problem}
-          </span>
-        </div>
-      </div>
-
-      <p className="text-sm text-slate-400 leading-relaxed m-0 mb-4">
-        {category.description}
-      </p>
-
-      <div className="flex flex-wrap gap-2">
-        {category.mainstream.slice(0, isExpanded ? undefined : 3).map((tech) => (
-          <div
-            key={tech.name}
-            className="tech-tag"
-            onMouseEnter={(e) => {
-              e.stopPropagation()
-              e.currentTarget.style.backgroundColor = `${category.color}15`
-              e.currentTarget.style.borderColor = `${category.color}40`
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = ''
-              e.currentTarget.style.borderColor = ''
-            }}
-          >
-            <span className="text-sm font-medium text-white">{tech.name}</span>
-            <PopularityBadge popularity={tech.popularity} />
-          </div>
-        ))}
-      </div>
-
-      {category.mainstream.length > 3 && (
-        <div className="mt-3 text-xs text-slate-500 flex items-center gap-1">
-          <span>{isExpanded ? '收起' : `展开更多 (${category.mainstream.length - 3}项)`}</span>
-          <span
-            className={cn(
-              'transition-transform duration-200',
-              isExpanded ? 'rotate-180' : 'rotate-0'
-            )}
-          >
-            ▼
-          </span>
-        </div>
-      )}
-    </div>
-  )
-}
 
 export default function TechStackFrontend() {
   return (
@@ -291,7 +190,7 @@ export default function TechStackFrontend() {
 
         <div className="tech-grid">
           {techCategories.map((category) => (
-            <TechCard key={category.id} category={category} />
+            <TechCategoryCard key={category.id} category={category} />
           ))}
         </div>
 
