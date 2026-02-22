@@ -5,7 +5,7 @@ import type { TechCategory } from '@/data/tech/types'
 
 const pythonCategories: TechCategory[] = [
   {
-    id: 'framework',
+    id: 'python-framework',
     name: 'Web框架',
     icon: '🌐',
     color: '#F59E0B',
@@ -21,7 +21,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'orm',
+    id: 'python-orm',
     name: 'ORM框架',
     icon: '💾',
     color: '#EAB308',
@@ -36,7 +36,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'validation',
+    id: 'python-validation',
     name: '数据验证',
     icon: '✅',
     color: '#D97706',
@@ -51,7 +51,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'async',
+    id: 'python-async',
     name: '异步运行时',
     icon: '⚡',
     color: '#FB923C',
@@ -66,7 +66,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'queue',
+    id: 'python-queue',
     name: '任务队列',
     icon: '⏳',
     color: '#FBBF24',
@@ -81,7 +81,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'testing',
+    id: 'python-testing',
     name: '测试框架',
     icon: '🧪',
     color: '#F97316',
@@ -96,7 +96,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'logging',
+    id: 'python-logging',
     name: '日志框架',
     icon: '📝',
     color: '#FB923C',
@@ -110,7 +110,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'docs',
+    id: 'python-docs',
     name: '文档生成',
     icon: '📚',
     color: '#EAB308',
@@ -124,7 +124,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cli',
+    id: 'python-cli',
     name: 'CLI工具',
     icon: '⌨️',
     color: '#D97706',
@@ -139,7 +139,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'deployment',
+    id: 'python-deployment',
     name: '部署运行',
     icon: '🚀',
     color: '#FBBF24',
@@ -153,7 +153,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'scraping',
+    id: 'python-scraping',
     name: '爬虫框架',
     icon: '🕷️',
     color: '#F59E0B',
@@ -168,7 +168,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'data',
+    id: 'python-data',
     name: '数据处理',
     icon: '📊',
     color: '#FACC15',
@@ -183,7 +183,7 @@ const pythonCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'email',
+    id: 'python-email',
     name: '邮件服务',
     icon: '📧',
     color: '#F59E0B',
@@ -200,7 +200,7 @@ const pythonCategories: TechCategory[] = [
 
 const goCategories: TechCategory[] = [
   {
-    id: 'framework',
+    id: 'go-framework',
     name: 'Web框架',
     icon: '🌐',
     color: '#06B6D4',
@@ -216,7 +216,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'orm',
+    id: 'go-orm',
     name: 'ORM框架',
     icon: '💾',
     color: '#0EA5E9',
@@ -231,7 +231,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'validation',
+    id: 'go-validation',
     name: '数据验证',
     icon: '✅',
     color: '#0891B2',
@@ -244,7 +244,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'auth',
+    id: 'go-auth',
     name: '认证授权',
     icon: '🔐',
     color: '#06B6D4',
@@ -258,7 +258,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'microservice',
+    id: 'go-microservice',
     name: '微服务',
     icon: '🔧',
     color: '#22D3EE',
@@ -273,7 +273,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'concurrent',
+    id: 'go-concurrent',
     name: '并发编程',
     icon: '⚡',
     color: '#67E8F9',
@@ -288,7 +288,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cache',
+    id: 'go-cache',
     name: '缓存方案',
     icon: '💨',
     color: '#06B6D4',
@@ -303,7 +303,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'logging',
+    id: 'go-logging',
     name: '日志框架',
     icon: '📝',
     color: '#0EA5E9',
@@ -318,7 +318,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'testing',
+    id: 'go-testing',
     name: '测试工具',
     icon: '🧪',
     color: '#06B6D4',
@@ -333,7 +333,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'docs',
+    id: 'go-docs',
     name: '文档生成',
     icon: '📚',
     color: '#22D3EE',
@@ -347,7 +347,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cli',
+    id: 'go-cli',
     name: 'CLI工具',
     icon: '⌨️',
     color: '#0891B2',
@@ -361,7 +361,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'discovery',
+    id: 'go-discovery',
     name: '服务发现',
     icon: '🔍',
     color: '#06B6D4',
@@ -375,7 +375,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'mq',
+    id: 'go-mq',
     name: '消息队列',
     icon: '📨',
     color: '#0EA5E9',
@@ -389,7 +389,7 @@ const goCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'deployment',
+    id: 'go-deployment',
     name: '部署运行',
     icon: '🚀',
     color: '#22D3EE',
@@ -406,7 +406,7 @@ const goCategories: TechCategory[] = [
 
 const javaCategories: TechCategory[] = [
   {
-    id: 'framework',
+    id: 'java-framework',
     name: 'Web框架',
     icon: '🌐',
     color: '#F97316',
@@ -421,7 +421,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'orm',
+    id: 'java-orm',
     name: '持久层框架',
     icon: '💾',
     color: '#EA580C',
@@ -436,7 +436,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'validation',
+    id: 'java-validation',
     name: '数据验证',
     icon: '✅',
     color: '#DC2626',
@@ -449,7 +449,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'security',
+    id: 'java-security',
     name: '安全框架',
     icon: '🔐',
     color: '#F97316',
@@ -464,7 +464,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'microservice',
+    id: 'java-microservice',
     name: '微服务',
     icon: '🔧',
     color: '#EA580C',
@@ -478,7 +478,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cache',
+    id: 'java-cache',
     name: '缓存方案',
     icon: '💨',
     color: '#F97316',
@@ -492,7 +492,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'logging',
+    id: 'java-logging',
     name: '日志框架',
     icon: '📝',
     color: '#DC2626',
@@ -505,7 +505,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'testing',
+    id: 'java-testing',
     name: '测试框架',
     icon: '🧪',
     color: '#F97316',
@@ -520,7 +520,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'docs',
+    id: 'java-docs',
     name: '文档生成',
     icon: '📚',
     color: '#EA580C',
@@ -534,7 +534,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'scheduler',
+    id: 'java-scheduler',
     name: '任务调度',
     icon: '⏰',
     color: '#DC2626',
@@ -548,7 +548,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'mq',
+    id: 'java-mq',
     name: '消息队列',
     icon: '📨',
     color: '#F97316',
@@ -562,7 +562,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'search',
+    id: 'java-search',
     name: '搜索引擎',
     icon: '🔍',
     color: '#EA580C',
@@ -575,7 +575,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cli',
+    id: 'java-cli',
     name: 'CLI工具',
     icon: '⌨️',
     color: '#DC2626',
@@ -588,7 +588,7 @@ const javaCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'deployment',
+    id: 'java-deployment',
     name: '部署运行',
     icon: '🚀',
     color: '#F97316',
@@ -605,7 +605,7 @@ const javaCategories: TechCategory[] = [
 
 const rustCategories: TechCategory[] = [
   {
-    id: 'framework',
+    id: 'rust-framework',
     name: 'Web框架',
     icon: '🌐',
     color: '#DC2626',
@@ -620,7 +620,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'orm',
+    id: 'rust-orm',
     name: '数据库工具',
     icon: '💾',
     color: '#B91C1C',
@@ -634,7 +634,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'async',
+    id: 'rust-async',
     name: '异步运行时',
     icon: '⚡',
     color: '#EF4444',
@@ -647,7 +647,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'serialization',
+    id: 'rust-serialization',
     name: '序列化',
     icon: '📦',
     color: '#DC2626',
@@ -661,7 +661,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'http',
+    id: 'rust-http',
     name: 'HTTP客户端',
     icon: '🌐',
     color: '#F87171',
@@ -675,7 +675,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cache',
+    id: 'rust-cache',
     name: '缓存库',
     icon: '💨',
     color: '#DC2626',
@@ -688,7 +688,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'logging',
+    id: 'rust-logging',
     name: '日志追踪',
     icon: '📝',
     color: '#EF4444',
@@ -702,7 +702,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'testing',
+    id: 'rust-testing',
     name: '测试工具',
     icon: '🧪',
     color: '#B91C1C',
@@ -716,7 +716,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'error',
+    id: 'rust-error',
     name: '错误处理',
     icon: '⚠️',
     color: '#DC2626',
@@ -730,7 +730,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cli',
+    id: 'rust-cli',
     name: 'CLI工具',
     icon: '⌨️',
     color: '#B91C1C',
@@ -744,7 +744,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'concurrent',
+    id: 'rust-concurrent',
     name: '并发编程',
     icon: '⚡',
     color: '#EF4444',
@@ -758,7 +758,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'mq',
+    id: 'rust-mq',
     name: '消息队列',
     icon: '📨',
     color: '#F87171',
@@ -771,7 +771,7 @@ const rustCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'deployment',
+    id: 'rust-deployment',
     name: '部署运行',
     icon: '🚀',
     color: '#B91C1C',
@@ -787,7 +787,7 @@ const rustCategories: TechCategory[] = [
 
 const nodejsCategories: TechCategory[] = [
   {
-    id: 'framework',
+    id: 'nodejs-framework',
     name: 'Web框架',
     icon: '🌐',
     color: '#68D391',
@@ -803,7 +803,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'orm',
+    id: 'nodejs-orm',
     name: 'ORM/数据库',
     icon: '💾',
     color: '#4FD1C5',
@@ -819,7 +819,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'validation',
+    id: 'nodejs-validation',
     name: '验证框架',
     icon: '✅',
     color: '#F6AD55',
@@ -835,7 +835,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'auth',
+    id: 'nodejs-auth',
     name: '认证授权',
     icon: '🔐',
     color: '#9F7AEA',
@@ -851,7 +851,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'realtime',
+    id: 'nodejs-realtime',
     name: '实时通信',
     icon: '⚡',
     color: '#FC8181',
@@ -867,7 +867,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'queue',
+    id: 'nodejs-queue',
     name: '任务队列',
     icon: '⏳',
     color: '#63B3ED',
@@ -882,7 +882,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cache',
+    id: 'nodejs-cache',
     name: '缓存方案',
     icon: '💨',
     color: '#ED8936',
@@ -896,7 +896,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'testing',
+    id: 'nodejs-testing',
     name: '测试框架',
     icon: '🧪',
     color: '#48BB78',
@@ -911,7 +911,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'storage',
+    id: 'nodejs-storage',
     name: '文件存储',
     icon: '📁',
     color: '#667EEA',
@@ -926,7 +926,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'email',
+    id: 'nodejs-email',
     name: '邮件服务',
     icon: '📧',
     color: '#F687B3',
@@ -941,7 +941,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'logging',
+    id: 'nodejs-logging',
     name: '日志框架',
     icon: '📝',
     color: '#F6AD55',
@@ -955,7 +955,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'docs',
+    id: 'nodejs-docs',
     name: '文档生成',
     icon: '📚',
     color: '#4FD1C5',
@@ -970,7 +970,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'security',
+    id: 'nodejs-security',
     name: '安全防护',
     icon: '🔐',
     color: '#FC8181',
@@ -985,7 +985,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'cli',
+    id: 'nodejs-cli',
     name: 'CLI工具',
     icon: '⌨️',
     color: '#9F7AEA',
@@ -1000,7 +1000,7 @@ const nodejsCategories: TechCategory[] = [
     ]
   },
   {
-    id: 'process',
+    id: 'nodejs-process',
     name: '进程管理',
     icon: '⚙️',
     color: '#68D391',
