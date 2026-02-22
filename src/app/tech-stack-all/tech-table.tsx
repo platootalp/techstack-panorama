@@ -1,6 +1,8 @@
 'use client'
 
 import { memo, useState, useEffect, useRef, useCallback } from 'react'
+import { usePagination } from '@/hooks/use-pagination'
+import { PaginationControl } from '@/components/ui/pagination-control'
 
 interface TechItem {
   category: string
@@ -93,6 +95,17 @@ export const TechTable = memo(function TechTable({ data, title, icon, collapsibl
   const [isExpanded, setIsExpanded] = useState(!collapsible)
   const { ref, isInView } = useInView(0.1)
 
+  const {
+    currentData,
+    currentPage,
+    pageSize,
+    totalPages,
+    totalItems,
+    pageSizeOptions,
+    setPage,
+    setPageSize,
+  } = usePagination(data, { initialPageSize: 10 })
+
   const toggleExpand = useCallback(() => {
     setIsExpanded(prev => !prev)
   }, [])
@@ -113,35 +126,50 @@ export const TechTable = memo(function TechTable({ data, title, icon, collapsibl
       </button>
       
       {isExpanded && (
-        <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
-          {!isInView ? (
-            <TableSkeleton />
-          ) : (
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-gray-50 dark:bg-gray-800">
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 w-28 whitespace-nowrap">
-                    分类
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">
-                    主流技术
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 w-36 whitespace-nowrap">
-                    热门推荐
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 w-32">
-                    说明
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((row, index) => (
-                  <TechTableRow key={index} row={row} />
-                ))}
-              </tbody>
-            </table>
+        <>
+          <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
+            {!isInView ? (
+              <TableSkeleton />
+            ) : (
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 dark:bg-gray-800">
+                    <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 w-28 whitespace-nowrap">
+                      分类
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">
+                      主流技术
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 w-36 whitespace-nowrap">
+                      热门推荐
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 w-32">
+                      说明
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentData.map((row, index) => (
+                    <TechTableRow key={index} row={row} />
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+          {isInView && (
+            <div className="mt-4">
+              <PaginationControl
+                currentPage={currentPage}
+                totalPages={totalPages}
+                pageSize={pageSize}
+                totalItems={totalItems}
+                pageSizeOptions={pageSizeOptions}
+                onPageChange={setPage}
+                onPageSizeChange={setPageSize}
+              />
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   )

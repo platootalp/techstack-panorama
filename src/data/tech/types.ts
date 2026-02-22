@@ -93,7 +93,7 @@ export interface TechDeepDive {
 export interface TechDetail {
   id: string
   name: string
-  category: 'frontend' | 'backend' | 'ai' | 'infrastructure'
+  category: 'frontend' | 'backend' | 'ai' | 'infrastructure' | 'llm-algorithm' | 'llm-application'
   subcategory: string
   description: string
   tagline: string

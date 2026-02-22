@@ -1,7 +1,10 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { TechCategoryCard } from '@/components/tech'
 import type { TechCategory } from '@/data/tech/types'
+import { usePagination } from '@/hooks/use-pagination'
+import { PaginationControl } from '@/components/ui/pagination-control'
 
 const pythonCategories: TechCategory[] = [
   {
@@ -1040,6 +1043,22 @@ export default function BackendStack() {
 
   const categories = categoriesMap[activeTab]
 
+  const {
+    currentData,
+    currentPage,
+    pageSize,
+    totalPages,
+    totalItems,
+    pageSizeOptions,
+    setPage,
+    setPageSize,
+  } = usePagination(categories, { initialPageSize: 9 })
+
+  // Reset pagination when tab changes
+  useEffect(() => {
+    setPage(1)
+  }, [activeTab, setPage])
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50 to-indigo-50 dark:from-[#0f0f1a] dark:via-[#1a0f2e] dark:to-[#0f0f1a] py-10 px-5">
       <div className="max-w-6xl mx-auto mb-12 text-center">
@@ -1092,10 +1111,25 @@ export default function BackendStack() {
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {categories.map((category) => (
+        {currentData.map((category) => (
           <TechCategoryCard key={category.id} category={category} />
         ))}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="max-w-6xl mx-auto mt-8">
+          <PaginationControl
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            pageSizeOptions={pageSizeOptions}
+            onPageChange={setPage}
+            onPageSizeChange={setPageSize}
+          />
+        </div>
+      )}
 
       <div className="footer-note max-w-6xl mx-auto">
         <p className="text-sm text-slate-600 dark:text-slate-500 m-0">

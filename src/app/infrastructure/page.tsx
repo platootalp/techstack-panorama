@@ -2,6 +2,8 @@
 
 import { TechCategoryCard } from '@/components/tech'
 import type { TechCategory } from '@/data/tech/types'
+import { usePagination } from '@/hooks/use-pagination'
+import { PaginationControl } from '@/components/ui/pagination-control'
 
 const techCategories: TechCategory[] = [
   {
@@ -285,6 +287,17 @@ const techCategories: TechCategory[] = [
 ]
 
 export default function InfrastructureStack() {
+  const {
+    currentData,
+    currentPage,
+    pageSize,
+    totalPages,
+    totalItems,
+    pageSizeOptions,
+    setPage,
+    setPageSize,
+  } = usePagination(techCategories, { initialPageSize: 10 })
+
   return (
     <div className="page-container">
       <div className="page-content">
@@ -311,9 +324,21 @@ export default function InfrastructureStack() {
         </div>
 
         <div className="tech-grid">
-          {techCategories.map((category) => (
+          {currentData.map((category) => (
             <TechCategoryCard key={category.id} category={category} />
           ))}
+        </div>
+
+        <div className="mt-8">
+          <PaginationControl
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageSize={pageSize}
+            totalItems={totalItems}
+            pageSizeOptions={pageSizeOptions}
+            onPageChange={setPage}
+            onPageSizeChange={setPageSize}
+          />
         </div>
 
         <div className="footer-note">

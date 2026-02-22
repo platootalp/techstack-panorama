@@ -6,6 +6,7 @@
  */
 
 import type { TechDetail, TechDeepDive, ArchiveReason } from './types'
+import { llmAlgorithmData, llmApplicationData } from './llm-data'
 
 // ============================================
 // 深度内容定义
@@ -1161,7 +1162,13 @@ export const techDatabase: Record<string, TechDetail> = {
     archiveNote: 'Rust Web 框架目前主流采用率都较低，更适合特定性能场景。整体 Rust Web 开发生态尚不成熟。',
     archivedAt: '2025-02-21T00:00:00Z',
     deepDive: axumDeepDive
-  }
+  },
+
+  // ===== LLM算法 Technologies =====
+  ...llmAlgorithmData,
+
+  // ===== LLM应用 Technologies =====
+  ...llmApplicationData,
 }
 
 // ============================================

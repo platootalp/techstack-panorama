@@ -4,6 +4,8 @@ import { TechCategoryCard } from '@/components/tech'
 import type { TechCategory } from '@/data/tech/types'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { usePagination } from '@/hooks/use-pagination'
+import { PaginationControl } from '@/components/ui/pagination-control'
 
 // LLM算法 - 底层技术（模型、训练、优化）
 const llmAlgorithmCategories: TechCategory[] = [
@@ -318,6 +320,22 @@ export default function AIStack() {
   const [activeTab, setActiveTab] = useState<'algorithm' | 'application'>('algorithm')
   const categories = activeTab === 'algorithm' ? llmAlgorithmCategories : llmApplicationCategories
 
+  const {
+    currentData,
+    currentPage,
+    pageSize,
+    totalPages,
+    totalItems,
+    pageSizeOptions,
+    setPage,
+    setPageSize,
+  } = usePagination(categories, { initialPageSize: 10 })
+
+  const handleTabChange = (tab: 'algorithm' | 'application') => {
+    setActiveTab(tab)
+    setPage(1)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50 to-indigo-50 dark:from-[#0f0f1a] dark:via-[#1a0f2e] dark:to-[#0f0f1a] py-10 px-5">
       <div className="max-w-[1200px] mx-auto mb-12 text-center">
@@ -332,7 +350,7 @@ export default function AIStack() {
       {/* Tab Switcher */}
       <div className="max-w-[600px] mx-auto mb-10 flex gap-3 p-1.5 rounded-2xl bg-white/50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10">
         <button
-          onClick={() => setActiveTab('algorithm')}
+          onClick={() => handleTabChange('algorithm')}
           className={cn(
             'flex-1 py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300',
             activeTab === 'algorithm'
@@ -347,7 +365,7 @@ export default function AIStack() {
           </span>
         </button>
         <button
-          onClick={() => setActiveTab('application')}
+          onClick={() => handleTabChange('application')}
           className={cn(
             'flex-1 py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300',
             activeTab === 'application'
@@ -380,9 +398,21 @@ export default function AIStack() {
       </div>
 
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {categories.map((category) => (
+        {currentData.map((category) => (
           <TechCategoryCard key={category.id} category={category} />
         ))}
+      </div>
+
+      <div className="max-w-[1200px] mx-auto mt-8">
+        <PaginationControl
+          currentPage={currentPage}
+          totalPages={totalPages}
+          pageSize={pageSize}
+          totalItems={totalItems}
+          pageSizeOptions={pageSizeOptions}
+          onPageChange={setPage}
+          onPageSizeChange={setPageSize}
+        />
       </div>
 
       <div className="max-w-[1200px] mx-auto mt-12 text-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10">
