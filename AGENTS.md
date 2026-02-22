@@ -1,6 +1,6 @@
 # AGENTS.md - TechStack Panorama
 
-**Generated:** 2026-02-21
+**Generated:** 2026-02-22
 **Commit:** (auto-generated)
 **Branch:** main
 
@@ -8,7 +8,7 @@ Guidelines for agentic coding agents working in this repository.
 
 ## OVERVIEW
 
-TechStack Panorama (技术栈全景图) - A modern full-stack tech stack visualization platform built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Uses shadcn/ui component library with 48 components.
+TechStack Panorama (技术栈全景图) - A modern full-stack tech stack visualization platform built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Uses shadcn/ui component library with 49 components.
 
 ## STRUCTURE
 
@@ -16,14 +16,28 @@ TechStack Panorama (技术栈全景图) - A modern full-stack tech stack visuali
 ./
 ├── src/
 │   ├── app/              # Next.js App Router pages
+│   │   ├── ai-stack/     # AI development stack
+│   │   ├── backend/      # Backend tech (Python/Go/Java/Rust/Node.js)
+│   │   ├── frontend/     # Frontend tech stack
+│   │   ├── infrastructure/# DevOps & infrastructure
+│   │   ├── tech-stack/   # Unified tech stack browser
+│   │   └── tech-stack-all/# All technologies view
 │   ├── components/       # React components
-│   │   ├── ui/          # shadcn/ui components (48 total)
-│   │   └── *.tsx        # App-specific components
+│   │   ├── ui/          # shadcn/ui components (49 total)
+│   │   ├── sidebar.tsx  # Navigation sidebar
+│   │   ├── header.tsx   # Top header with theme toggle
+│   │   ├── theme-provider.tsx  # Theme context provider
+│   │   ├── theme-toggle.tsx    # Light/dark mode toggle
+│   │   └── error-boundary.tsx  # Error handling
 │   ├── data/            # Static data and types
+│   │   └── tech/        # Tech stack data files
 │   ├── hooks/           # Custom React hooks
-│   └── lib/             # Utility functions
+│   ├── lib/             # Utility functions
+│   └── test/            # Test setup and utilities
 ├── editor/              # LeetCode editor module (separate)
-└── docs/                # Documentation and plans
+├── docs/                # Documentation and plans
+├── prisma/              # Database schema
+└── public/              # Static assets
 ```
 
 ## WHERE TO LOOK
@@ -36,6 +50,7 @@ TechStack Panorama (技术栈全景图) - A modern full-stack tech stack visuali
 | Custom hooks | `src/hooks/` | Use kebab-case naming |
 | Utilities | `src/lib/` | Shared helper functions |
 | LeetCode content | `editor/cn/` | Separate module |
+| Theme/Colors | `src/app/globals.css` | CSS variables for theming |
 
 ## COMMANDS
 
@@ -52,6 +67,11 @@ bun start
 # Lint code with ESLint
 bun run lint
 
+# Run tests
+bun run test           # Run tests in watch mode
+bun run test:run       # Run tests once
+bun run test:coverage  # Run tests with coverage
+
 # Database operations (Prisma)
 bun run db:push      # Push schema changes
 bun run db:generate  # Generate Prisma client
@@ -59,7 +79,7 @@ bun run db:migrate   # Run migrations
 bun run db:reset     # Reset database
 ```
 
-**Note**: No test framework is currently configured.
+**Note**: Vitest is configured for testing. See `vitest.config.ts` for configuration.
 
 ## CONVENTIONS
 
@@ -110,23 +130,58 @@ bun run db:reset     # Reset database
 - Types: Define in `/src/data/tech/types.ts`
 - Use Chinese for UI text, English for code/comments
 
+### Theme System
+- Theme provider wraps the app in `layout.tsx`
+- Supports `light`, `dark`, and `system` modes
+- CSS variables defined in `globals.css`
+- Use `next-themes` for theme management
+
 ## ANTI-PATTERNS (THIS PROJECT)
 
 - **Never modify shadcn/ui source directly** - Extend via props instead
-- **No test framework configured** - Don't add tests without setting up framework first
 - **No custom ESLint/Prettier configs** - Uses defaults only
 - **Don't use `as any` or `@ts-ignore`** - Fix types properly
 - **Avoid empty catch blocks** - Always handle errors meaningfully
 
 ## Dependencies to Know
 
-- **UI**: @radix-ui/*, lucide-react, framer-motion
-- **State**: zustand, @tanstack/react-query
+### Core
+- **Framework**: next, react, react-dom
+- **Language**: typescript
+- **Styling**: tailwindcss, tailwind-merge, clsx
+
+### UI
+- **Components**: @radix-ui/*, shadcn/ui
+- **Icons**: lucide-react
+- **Animation**: framer-motion
+- **Charts**: recharts
+
+### State & Data
+- **State**: zustand
+- **Query**: @tanstack/react-query, @tanstack/react-table
 - **Forms**: react-hook-form, @hookform/resolvers, zod
 - **Database**: prisma, @prisma/client
+
+### Additional Features
 - **Auth**: next-auth
 - **i18n**: next-intl
+- **Drag & Drop**: @dnd-kit/*
+- **Editor**: @mdxeditor/editor
+- **Markdown**: react-markdown, react-syntax-highlighter
+
+### Testing
+- **Runner**: vitest
+- **React Testing**: @testing-library/react, @testing-library/jest-dom
+- **Environment**: jsdom
+- **Coverage**: @vitest/coverage-v8
 
 ## ESLint Configuration
 
 Uses `eslint-config-next` with Next.js recommended rules. Run `bun run lint` before committing.
+
+## Testing Guidelines
+
+- Tests located in `src/**/*.test.ts` or `src/**/*.spec.ts`
+- Test setup in `src/test/setup.ts`
+- Use `@testing-library/react` for component tests
+- Coverage excludes: node_modules, test files, config files, page/layout files
