@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { 
   Search, 
@@ -27,6 +27,8 @@ import {
 import { getArchivedTech, getArchiveReasonText } from '@/data/tech/tech-database'
 import type { TechDetail } from '@/data/tech/types'
 import { ScoreBadge } from '@/components/tech/ScoreBadge'
+import { usePagination } from '@/hooks/use-pagination'
+import { PaginationControl } from '@/components/ui/pagination-control'
 
 type ArchiveReason = 'all' | 'low_popularity' | 'deprecated' | 'replaced' | 'niche_use_case'
 
@@ -69,6 +71,22 @@ export default function ArchivedTechPage() {
 
     return result.sort((a, b) => (b.archivedAt || '').localeCompare(a.archivedAt || ''))
   }, [archivedTech, searchQuery, selectedReason])
+
+  const {
+    currentData,
+    currentPage,
+    pageSize,
+    totalPages,
+    totalItems,
+    pageSizeOptions,
+    setPage,
+    setPageSize,
+  } = usePagination(filteredTech, { initialPageSize: 12 })
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setPage(1)
+  }, [searchQuery, selectedReason, setPage])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -150,18 +168,23 @@ export default function ArchivedTechPage() {
 
         {/* Results Count */}
         <div className="mb-4 text-gray-600 dark:text-gray-400">
-          找到 <span className="font-bold text-gray-600">{filteredTech.length}</span> 个归档技术
+          找到 <span className="font-bold text-gray-600">{totalItems}</span> 个归档技术
+          {totalPages > 1 && (
+            <span className="ml-2">
+              (第 {currentPage} / {totalPages} 页)
+            </span>
+          )}
         </div>
 
         {/* Archived Tech Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTech.map((tech) => (
+          {currentData.map((tech) => (
             <ArchivedTechCard key={tech.id} tech={tech} />
           ))}
         </div>
 
         {/* Empty State */}
-        {filteredTech.length === 0 && (
+        {currentData.length === 0 && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">📦</div>
             <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -170,6 +193,21 @@ export default function ArchivedTechPage() {
             <p className="text-gray-500">
               尝试调整搜索词或筛选条件
             </p>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-8">
+            <PaginationControl
+              currentPage={currentPage}
+              totalPages={totalPages}
+              pageSize={pageSize}
+              totalItems={totalItems}
+              pageSizeOptions={pageSizeOptions}
+              onPageChange={setPage}
+              onPageSizeChange={setPageSize}
+            />
           </div>
         )}
 
