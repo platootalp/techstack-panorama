@@ -115,6 +115,33 @@ export const techScoreData: Record<string, TechScores> = {
     total: 72,
     lastCalculated: '2025-02-15T10:00:00Z'
   },
+  express: {
+    popularity: 95,
+    maintenance: 80,
+    ecosystem: 95,
+    learningCurve: 90,
+    enterpriseAdoption: 85,
+    total: 91,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  fastify: {
+    popularity: 75,
+    maintenance: 90,
+    ecosystem: 75,
+    learningCurve: 80,
+    enterpriseAdoption: 65,
+    total: 78,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  prisma: {
+    popularity: 85,
+    maintenance: 92,
+    ecosystem: 85,
+    learningCurve: 80,
+    enterpriseAdoption: 80,
+    total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
 
   // ===== Python Technologies =====
   fastapi: {
@@ -133,6 +160,24 @@ export const techScoreData: Record<string, TechScores> = {
     learningCurve: 75,
     enterpriseAdoption: 82,
     total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  flask: {
+    popularity: 85,
+    maintenance: 85,
+    ecosystem: 85,
+    learningCurve: 90,
+    enterpriseAdoption: 80,
+    total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  sqlalchemy: {
+    popularity: 88,
+    maintenance: 90,
+    ecosystem: 90,
+    learningCurve: 70,
+    enterpriseAdoption: 88,
+    total: 86,
     lastCalculated: '2025-02-15T10:00:00Z'
   },
 
@@ -155,6 +200,24 @@ export const techScoreData: Record<string, TechScores> = {
     total: 73,
     lastCalculated: '2025-02-15T10:00:00Z'
   },
+  echo: {
+    popularity: 80,
+    maintenance: 85,
+    ecosystem: 75,
+    learningCurve: 90,
+    enterpriseAdoption: 75,
+    total: 82,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  gorm: {
+    popularity: 85,
+    maintenance: 88,
+    ecosystem: 85,
+    learningCurve: 82,
+    enterpriseAdoption: 80,
+    total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
 
   // ===== Java Technologies =====
   'spring-boot': {
@@ -175,6 +238,24 @@ export const techScoreData: Record<string, TechScores> = {
     total: 71,
     lastCalculated: '2025-02-15T10:00:00Z'
   },
+  'mybatis-plus': {
+    popularity: 82,
+    maintenance: 88,
+    ecosystem: 80,
+    learningCurve: 85,
+    enterpriseAdoption: 85,
+    total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  'spring-security': {
+    popularity: 88,
+    maintenance: 90,
+    ecosystem: 92,
+    learningCurve: 70,
+    enterpriseAdoption: 95,
+    total: 88,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
 
   // ===== Rust Technologies =====
   axum: {
@@ -193,6 +274,99 @@ export const techScoreData: Record<string, TechScores> = {
     learningCurve: 58,
     enterpriseAdoption: 40,
     total: 63,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+
+  // ===== Frontend State Management =====
+  zustand: {
+    popularity: 82,
+    maintenance: 88,
+    ecosystem: 75,
+    learningCurve: 92,
+    enterpriseAdoption: 70,
+    total: 82,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+
+  // ===== Frontend UI Libraries =====
+  shadcn: {
+    popularity: 88,
+    maintenance: 90,
+    ecosystem: 70,
+    learningCurve: 85,
+    enterpriseAdoption: 75,
+    total: 83,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  antd: {
+    popularity: 90,
+    maintenance: 88,
+    ecosystem: 85,
+    learningCurve: 80,
+    enterpriseAdoption: 88,
+    total: 87,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+
+  // ===== Frontend Testing =====
+  vitest: {
+    popularity: 78,
+    maintenance: 90,
+    ecosystem: 75,
+    learningCurve: 88,
+    enterpriseAdoption: 65,
+    total: 80,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  playwright: {
+    popularity: 85,
+    maintenance: 92,
+    ecosystem: 80,
+    learningCurve: 82,
+    enterpriseAdoption: 80,
+    total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+
+  // ===== Frontend Package Managers =====
+  pnpm: {
+    popularity: 88,
+    maintenance: 90,
+    ecosystem: 75,
+    learningCurve: 92,
+    enterpriseAdoption: 78,
+    total: 86,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+
+  // ===== Frontend Data Fetching =====
+  tanstackquery: {
+    popularity: 85,
+    maintenance: 90,
+    ecosystem: 82,
+    learningCurve: 80,
+    enterpriseAdoption: 82,
+    total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+
+  // ===== Rust Technologies (Additional) =====
+  seaorm: {
+    popularity: 70,
+    maintenance: 85,
+    ecosystem: 65,
+    learningCurve: 75,
+    enterpriseAdoption: 55,
+    total: 72,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  tokio: {
+    popularity: 85,
+    maintenance: 92,
+    ecosystem: 88,
+    learningCurve: 65,
+    enterpriseAdoption: 75,
+    total: 82,
     lastCalculated: '2025-02-15T10:00:00Z'
   },
 

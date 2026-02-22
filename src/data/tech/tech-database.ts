@@ -854,6 +854,503 @@ export const techDatabase: Record<string, TechDetail> = {
   },
 
 
+  // ===== Frontend: State Management =====
+  zustand: {
+    id: 'zustand',
+    name: 'Zustand',
+    category: 'frontend',
+    subcategory: '状态管理',
+    description: '轻量、简单、强大的 React 状态管理库，基于 Hooks',
+    tagline: '极简的 React 状态管理',
+    version: '4.5.0',
+    pros: ['极简 API', '无样板代码', 'TypeScript 支持好', '体积小巧', '易于学习'],
+    cons: ['生态相对较小', '复杂场景需自行组合', '调试工具不如 Redux'],
+    bestFor: ['中小型项目', '快速原型', '简单状态管理', '现代 React 项目'],
+    notFor: ['复杂时间旅行调试', '需要严格架构约束'],
+    learningCurve: 'beginner',
+    ecosystemScore: 75,
+    popularity: { githubStars: 42000, npmDownloads: 1200000 },
+    companyUsers: ['Vercel', 'GitHub', 'Linear', 'Arc'],
+    createdYear: 2019,
+    maintainedBy: 'Poimandres',
+    officialUrl: 'https://zustand-demo.pmnd.rs',
+    githubUrl: 'https://github.com/pmndrs/zustand',
+    documentationUrl: 'https://docs.pmnd.rs/zustand',
+    alternatives: ['redux', 'jotai', 'recoil', 'mobx'],
+    scores: {
+      popularity: 82, maintenance: 85, ecosystem: 75, learningCurve: 92, enterpriseAdoption: 70,
+      total: 82, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '极简 API', description: '仅需创建一个 store，无需 Provider 包裹，直接通过 hooks 访问状态。' },
+        { title: '无样板代码', description: '不需要写 actions、reducers，直接修改状态即可。' },
+        { title: '优秀的 TypeScript 支持', description: '类型推断完善，无需额外类型定义。' }
+      ],
+      [
+        { type: 'official', title: 'Zustand 文档', url: 'https://docs.pmnd.rs/zustand', description: '官方文档' },
+        { type: 'community', title: 'Zustand GitHub', url: 'https://github.com/pmndrs/zustand', description: '源代码' }
+      ],
+      [
+        { category: '最佳实践', items: ['按功能拆分 store', '使用中间件持久化', '结合 Immer 处理复杂更新'] }
+      ],
+      [
+        { techId: 'redux', techName: 'Redux', strengths: ['调试工具强大', '时间旅行', '生态系统成熟'], weaknesses: ['样板代码多', '学习曲线陡峭'], whenToChoose: '需要强大调试能力或团队已熟悉 Redux' }
+      ],
+      [
+        { scenario: 'React 状态管理', description: '现代 React 项目的首选状态管理方案', recommended: true },
+        { scenario: '跨组件通信', description: '比 Context 更简洁的跨组件状态共享', recommended: true }
+      ]
+    )
+  },
+
+  // ===== Frontend: UI Component Libraries =====
+  shadcn: {
+    id: 'shadcn',
+    name: 'shadcn/ui',
+    category: 'frontend',
+    subcategory: 'UI组件库',
+    description: '设计精美、可复用的组件集合，基于 Radix UI 和 Tailwind CSS',
+    tagline: '可复用、可定制的组件库',
+    version: '2.0.0',
+    pros: ['无样式锁定', '完全可定制', '基于 Radix UI', 'Tailwind 集成', '代码可复制'],
+    cons: ['需要配置 Tailwind', '组件需手动安装', '无 npm 包直接安装'],
+    bestFor: ['需要自定义设计系统', '现代 React 项目', 'Tailwind 项目'],
+    notFor: ['快速原型', '不想配置样式'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 80,
+    popularity: { githubStars: 65000 },
+    companyUsers: ['Vercel', 'Linear', 'Clerk'],
+    createdYear: 2023,
+    maintainedBy: 'shadcn',
+    officialUrl: 'https://ui.shadcn.com',
+    githubUrl: 'https://github.com/shadcn-ui/ui',
+    documentationUrl: 'https://ui.shadcn.com/docs',
+    alternatives: ['mui', 'antd', 'chakra-ui'],
+    scores: {
+      popularity: 88, maintenance: 90, ecosystem: 80, learningCurve: 80, enterpriseAdoption: 75,
+      total: 84, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '无样式锁定', description: '组件代码直接复制到项目中，完全拥有和控制样式。' },
+        { title: 'Radix UI 基础', description: '基于 Radix UI 的无障碍组件，确保可访问性。' },
+        { title: 'Tailwind 集成', description: '与 Tailwind CSS 深度集成，样式一致性强。' }
+      ],
+      [
+        { type: 'official', title: 'shadcn/ui 文档', url: 'https://ui.shadcn.com/docs', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 CLI 安装组件', '自定义主题变量', '配合 Tailwind 使用'] }
+      ],
+      [
+        { techId: 'mui', techName: 'MUI', strengths: ['组件丰富', '文档完善', '企业采用率高'], weaknesses: ['样式难以覆盖', '包体积大'], whenToChoose: '需要开箱即用的 Material Design' }
+      ],
+      [
+        { scenario: '设计系统构建', description: '基于 shadcn 构建自定义设计系统', recommended: true },
+        { scenario: '管理后台', description: '快速构建美观的管理界面', recommended: true }
+      ]
+    )
+  },
+
+  antd: {
+    id: 'antd',
+    name: 'Ant Design',
+    category: 'frontend',
+    subcategory: 'UI组件库',
+    description: '企业级 UI 设计语言和 React 组件库，由阿里巴巴出品',
+    tagline: '企业级 UI 设计语言',
+    version: '5.15.0',
+    pros: ['企业级组件丰富', '设计规范完善', '中文文档优秀', '生态系统成熟', 'TypeScript 支持'],
+    cons: ['包体积较大', '样式定制复杂', '设计偏向中后台'],
+    bestFor: ['企业后台系统', '中后台管理', '需要完整设计规范'],
+    notFor: ['C端消费者应用', '追求极小包体积'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 88,
+    popularity: { githubStars: 91000 },
+    companyUsers: ['Alibaba', 'Tencent', 'Baidu', 'Meituan'],
+    createdYear: 2015,
+    maintainedBy: 'Ant Group',
+    officialUrl: 'https://ant.design',
+    githubUrl: 'https://github.com/ant-design/ant-design',
+    documentationUrl: 'https://ant.design/docs/react/introduce',
+    alternatives: ['mui', 'shadcn', 'chakra-ui'],
+    scores: {
+      popularity: 90, maintenance: 88, ecosystem: 88, learningCurve: 78, enterpriseAdoption: 92,
+      total: 87, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '企业级组件', description: '提供 60+ 高质量组件，覆盖中后台常见场景。' },
+        { title: '设计规范', description: '完整的设计语言和规范，确保产品一致性。' },
+        { title: 'ProComponents', description: '基于 Ant Design 的高级组件库，进一步提升开发效率。' }
+      ],
+      [
+        { type: 'official', title: 'Ant Design 文档', url: 'https://ant.design', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 ConfigProvider 配置主题', '按需加载组件', '配合 ProComponents 使用'] }
+      ],
+      [
+        { techId: 'mui', techName: 'MUI', strengths: ['Material Design', 'React Native 支持'], weaknesses: ['中后台组件较少'], whenToChoose: '需要 Material Design 或跨平台' }
+      ],
+      [
+        { scenario: '中后台管理系统', description: '企业级后台开发的首选', recommended: true },
+        { scenario: '数据密集型应用', description: '表格、表单等组件功能强大', recommended: true }
+      ]
+    )
+  },
+
+  // ===== Frontend: Testing Tools =====
+  vitest: {
+    id: 'vitest',
+    name: 'Vitest',
+    category: 'frontend',
+    subcategory: '测试工具',
+    description: '由 Vite 提供支持的极速单元测试框架',
+    tagline: '下一代测试框架',
+    version: '1.3.0',
+    pros: ['极速执行', 'Vite 集成', 'Jest 兼容', 'TypeScript 原生支持', 'HMR 支持'],
+    cons: ['生态相对较新', '某些 Jest 插件不兼容', '企业采用率增长中'],
+    bestFor: ['Vite 项目', '现代前端项目', '需要快速测试反馈'],
+    notFor: ['遗留 Webpack 项目', '深度依赖 Jest 生态'],
+    learningCurve: 'beginner',
+    ecosystemScore: 75,
+    popularity: { githubStars: 12000 },
+    companyUsers: ['Vite', 'Nuxt', 'Svelte'],
+    createdYear: 2021,
+    maintainedBy: 'Vitest Team',
+    officialUrl: 'https://vitest.dev',
+    githubUrl: 'https://github.com/vitest-dev/vitest',
+    documentationUrl: 'https://vitest.dev/guide',
+    alternatives: ['jest', 'mocha', 'jasmine'],
+    scores: {
+      popularity: 78, maintenance: 88, ecosystem: 75, learningCurve: 90, enterpriseAdoption: 65,
+      total: 80, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '极速执行', description: '利用 Vite 的极速 HMR，测试执行速度极快。' },
+        { title: 'Jest 兼容', description: 'API 设计兼容 Jest，迁移成本低。' },
+        { title: 'TypeScript 原生', description: '无需额外配置，原生支持 TypeScript。' }
+      ],
+      [
+        { type: 'official', title: 'Vitest 文档', url: 'https://vitest.dev', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['配置 Vite 别名', '使用 coverage 插件', '配合 Testing Library'] }
+      ],
+      [
+        { techId: 'jest', techName: 'Jest', strengths: ['生态最成熟', '企业采用率高', 'Snapshot 测试'], weaknesses: ['速度较慢', '配置复杂'], whenToChoose: '团队已熟悉 Jest 或需要完整生态' }
+      ],
+      [
+        { scenario: 'Vite 项目测试', description: 'Vite 项目的最佳测试伴侣', recommended: true },
+        { scenario: '快速反馈开发', description: '极速测试反馈提升开发体验', recommended: true }
+      ]
+    )
+  },
+
+  playwright: {
+    id: 'playwright',
+    name: 'Playwright',
+    category: 'frontend',
+    subcategory: '测试工具',
+    description: 'Microsoft 出品的现代 Web 测试和自动化框架',
+    tagline: '可靠的端到端测试',
+    version: '1.42.0',
+    pros: ['多浏览器支持', '自动等待', '强大的调试工具', '并行执行', 'Trace Viewer'],
+    cons: ['学习曲线存在', '资源占用较高', '测试编写时间较长'],
+    bestFor: ['端到端测试', '跨浏览器测试', '关键业务路径测试'],
+    notFor: ['简单静态页面', '单元测试'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 82,
+    popularity: { githubStars: 60000 },
+    companyUsers: ['Microsoft', 'Google', 'Adobe', 'Slack'],
+    createdYear: 2020,
+    maintainedBy: 'Microsoft',
+    officialUrl: 'https://playwright.dev',
+    githubUrl: 'https://github.com/microsoft/playwright',
+    documentationUrl: 'https://playwright.dev/docs',
+    alternatives: ['cypress', 'selenium', 'puppeteer'],
+    scores: {
+      popularity: 88, maintenance: 92, ecosystem: 82, learningCurve: 75, enterpriseAdoption: 85,
+      total: 85, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '多浏览器支持', description: 'Chromium、Firefox、WebKit 一键测试。' },
+        { title: '自动等待', description: '智能等待元素，减少 flaky 测试。' },
+        { title: 'Trace Viewer', description: '详细的测试执行追踪，便于调试。' }
+      ],
+      [
+        { type: 'official', title: 'Playwright 文档', url: 'https://playwright.dev', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 Codegen 生成测试', '配置并行执行', '使用 Trace Viewer 调试'] }
+      ],
+      [
+        { techId: 'cypress', techName: 'Cypress', strengths: ['实时重载', '调试体验好', '社区成熟'], weaknesses: ['仅支持 Chromium 家族', '并行测试需付费'], whenToChoose: '团队偏好 Cypress 或需要实时调试' }
+      ],
+      [
+        { scenario: '关键业务测试', description: '确保核心用户流程正常', recommended: true },
+        { scenario: '跨浏览器兼容性', description: '验证多浏览器表现一致', recommended: true }
+      ]
+    )
+  },
+
+  // ===== Frontend: Package Manager & Data Fetching =====
+  pnpm: {
+    id: 'pnpm',
+    name: 'pnpm',
+    category: 'frontend',
+    subcategory: '包管理器',
+    description: '快速、节省磁盘空间的包管理器',
+    tagline: '高效的包管理器',
+    version: '8.15.0',
+    pros: ['节省磁盘空间', '安装速度快', '严格依赖管理', 'Monorepo 支持好'],
+    cons: ['某些工具兼容性问题', '学习成本', '迁移成本'],
+    bestFor: ['大型项目', 'Monorepo', '磁盘空间有限'],
+    notFor: ['小型项目', '简单脚本'],
+    learningCurve: 'beginner',
+    ecosystemScore: 78,
+    popularity: { githubStars: 28000 },
+    companyUsers: ['Vercel', 'Vue', 'Nuxt'],
+    createdYear: 2017,
+    maintainedBy: 'pnpm Team',
+    officialUrl: 'https://pnpm.io',
+    githubUrl: 'https://github.com/pnpm/pnpm',
+    documentationUrl: 'https://pnpm.io/motivation',
+    alternatives: ['npm', 'yarn', 'bun'],
+    scores: {
+      popularity: 85, maintenance: 88, ecosystem: 78, learningCurve: 90, enterpriseAdoption: 75,
+      total: 84, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '内容可寻址存储', description: '所有包文件存储在全局存储中，通过硬链接引用，大幅节省磁盘空间。' },
+        { title: '严格依赖管理', description: '默认不允许访问未声明的依赖，避免幽灵依赖问题。' }
+      ],
+      [
+        { type: 'official', title: 'pnpm 文档', url: 'https://pnpm.io', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 workspace 管理 Monorepo', '配置 .npmrc 优化设置', '配合 Corepack 使用'] }
+      ],
+      [
+        { techId: 'npm', techName: 'npm', strengths: ['Node.js 内置', '生态最成熟'], weaknesses: ['磁盘占用大', '安装速度慢'], whenToChoose: '不想安装额外工具' }
+      ],
+      [
+        { scenario: 'Monorepo 项目', description: 'workspace 功能强大，适合多包管理', recommended: true },
+        { scenario: '节省磁盘空间', description: '全局存储机制节省大量空间', recommended: true }
+      ]
+    )
+  },
+
+  tanstackquery: {
+    id: 'tanstackquery',
+    name: 'TanStack Query',
+    category: 'frontend',
+    subcategory: '数据请求',
+    description: '强大的异步状态管理库，用于处理服务端状态',
+    tagline: '服务端状态管理神器',
+    version: '5.20.0',
+    pros: ['自动缓存', '自动重试', '乐观更新', '无限滚动支持', 'DevTools'],
+    cons: ['学习曲线存在', '概念较多', '需要理解缓存策略'],
+    bestFor: ['服务端状态管理', 'REST API', 'GraphQL', '复杂数据交互'],
+    notFor: ['简单静态页面', '客户端状态管理'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 85,
+    popularity: { githubStars: 42000 },
+    companyUsers: ['Vercel', 'Netflix', 'Uber'],
+    createdYear: 2019,
+    maintainedBy: 'TanStack',
+    officialUrl: 'https://tanstack.com/query',
+    githubUrl: 'https://github.com/TanStack/query',
+    documentationUrl: 'https://tanstack.com/query/latest',
+    alternatives: ['swr', 'rtk-query', 'apollo-client'],
+    scores: {
+      popularity: 88, maintenance: 90, ecosystem: 85, learningCurve: 78, enterpriseAdoption: 80,
+      total: 85, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '自动缓存', description: '智能的缓存机制，自动去重和失效处理。' },
+        { title: '乐观更新', description: '先更新 UI 再发送请求，提升用户体验。' },
+        { title: '无限滚动', description: '内置无限滚动支持，简化分页逻辑。' }
+      ],
+      [
+        { type: 'official', title: 'TanStack Query 文档', url: 'https://tanstack.com/query', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['合理设置 staleTime', '使用 prefetch 预加载', '配合 Suspense 使用'] }
+      ],
+      [
+        { techId: 'swr', techName: 'SWR', strengths: ['更轻量', 'Vercel 出品', '简单'], weaknesses: ['功能较少', '生态较小'], whenToChoose: '需要轻量级方案' }
+      ],
+      [
+        { scenario: '服务端状态管理', description: '管理服务端数据的最佳选择', recommended: true },
+        { scenario: '复杂数据交互', description: '缓存、重试、乐观更新一站式解决', recommended: true }
+      ]
+    )
+  },
+
+  // ===== Node.js Core Technologies =====
+  express: {
+    id: 'express',
+    name: 'Express',
+    category: 'backend',
+    subcategory: 'Web框架',
+    description: '快速、开放、极简的 Node.js Web 框架',
+    tagline: 'Node.js 最流行的 Web 框架',
+    version: '4.18.2',
+    pros: ['极简灵活', '生态最丰富', '学习曲线平缓', '中间件机制', '社区活跃'],
+    cons: ['缺乏内置功能', '回调地狱', '需要手动配置', '性能非最优'],
+    bestFor: ['REST API', '中小型应用', '微服务', '快速原型'],
+    notFor: ['大型复杂应用', '需要严格架构的项目'],
+    learningCurve: 'beginner',
+    ecosystemScore: 95,
+    popularity: { githubStars: 64000, npmDownloads: 28000000 },
+    companyUsers: ['Uber', 'IBM', 'Twitter', 'Stack Overflow'],
+    createdYear: 2010,
+    maintainedBy: 'OpenJS Foundation',
+    officialUrl: 'https://expressjs.com',
+    githubUrl: 'https://github.com/expressjs/express',
+    documentationUrl: 'https://expressjs.com/en/api.html',
+    alternatives: ['fastify', 'koa', 'nestjs'],
+    scores: {
+      popularity: 95, maintenance: 80, ecosystem: 95, learningCurve: 90, enterpriseAdoption: 85,
+      total: 91, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '中间件架构', description: '基于中间件的请求处理流程，灵活可扩展。' },
+        { title: '路由系统', description: '强大的路由定义，支持参数、正则、链式调用。' },
+        { title: '模板引擎', description: '支持多种模板引擎，快速渲染 HTML。' }
+      ],
+      [
+        { type: 'official', title: 'Express 文档', url: 'https://expressjs.com', description: '官方文档和指南' },
+        { type: 'community', title: 'Express 中文文档', url: 'https://expressjs.com/zh-cn/', description: '中文官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用路由模块化组织代码', '统一错误处理中间件', '使用 helmet 增强安全'] }
+      ],
+      [
+        { techId: 'fastify', techName: 'Fastify', strengths: ['性能更好', '内置 JSON Schema', 'TypeScript 友好'], weaknesses: ['生态较小', '学习曲线稍陡'], whenToChoose: '需要高性能时' }
+      ],
+      [
+        { scenario: '快速原型开发', description: '快速搭建 API 服务', recommended: true },
+        { scenario: '中小型 Web 应用', description: '灵活轻量的 Web 后端', recommended: true }
+      ]
+    )
+  },
+
+  fastify: {
+    id: 'fastify',
+    name: 'Fastify',
+    category: 'backend',
+    subcategory: 'Web框架',
+    description: '快速、低开销的 Node.js Web 框架',
+    tagline: 'Node.js 最快的 Web 框架之一',
+    version: '4.26.0',
+    pros: ['极高性能', '低开销', '内置 JSON Schema', 'TypeScript 优先', '插件系统'],
+    cons: ['生态相对较小', '学习曲线较陡', '部分中间件需适配'],
+    bestFor: ['高性能 API', '微服务', 'Serverless', '实时应用'],
+    notFor: ['简单 CRUD', '需要丰富开箱即用功能'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 75,
+    popularity: { githubStars: 30000, npmDownloads: 1200000 },
+    companyUsers: ['NearForm', 'Platformatic', 'Mia-Platform'],
+    createdYear: 2016,
+    maintainedBy: 'Fastify Team',
+    officialUrl: 'https://fastify.dev',
+    githubUrl: 'https://github.com/fastify/fastify',
+    documentationUrl: 'https://fastify.dev/docs',
+    alternatives: ['express', 'nestjs', 'hono'],
+    scores: {
+      popularity: 75, maintenance: 90, ecosystem: 75, learningCurve: 80, enterpriseAdoption: 65,
+      total: 78, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: 'Schema 验证', description: '内置 JSON Schema 验证，提升性能和可靠性。' },
+        { title: '钩子系统', description: '丰富的生命周期钩子，精细控制请求流程。' },
+        { title: '插件架构', description: '强大的插件系统，支持嵌套和封装。' }
+      ],
+      [
+        { type: 'official', title: 'Fastify 文档', url: 'https://fastify.dev/docs', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 schema 定义路由', '善用插件封装功能', '使用 fastify-cli 初始化项目'] }
+      ],
+      [
+        { techId: 'express', techName: 'Express', strengths: ['生态丰富', '学习曲线平缓', '社区活跃'], weaknesses: ['性能较低', '缺乏现代特性'], whenToChoose: '快速开发、生态优先' }
+      ],
+      [
+        { scenario: '高性能 API 服务', description: '需要处理大量并发请求', recommended: true },
+        { scenario: '微服务架构', description: '轻量、快速的服务节点', recommended: true }
+      ]
+    )
+  },
+
+  prisma: {
+    id: 'prisma',
+    name: 'Prisma',
+    category: 'backend',
+    subcategory: 'ORM',
+    description: '下一代 Node.js 和 TypeScript ORM',
+    tagline: '现代数据库工具包',
+    version: '5.9.0',
+    pros: ['类型安全', '自动迁移', '可视化数据', '强大的查询引擎', '优秀的 DX'],
+    cons: ['不支持所有数据库特性', '迁移有时复杂', '运行时体积较大'],
+    bestFor: ['TypeScript 项目', '需要类型安全', '现代 Node.js 应用'],
+    notFor: ['复杂 SQL', '遗留数据库', '极端性能要求'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 85,
+    popularity: { githubStars: 37000, npmDownloads: 3500000 },
+    companyUsers: ['Vercel', 'Netlify', 'Rakuten', 'Tryg'],
+    createdYear: 2019,
+    maintainedBy: 'Prisma',
+    officialUrl: 'https://prisma.io',
+    githubUrl: 'https://github.com/prisma/prisma',
+    documentationUrl: 'https://prisma.io/docs',
+    alternatives: ['typeorm', 'sequelize', 'drizzle'],
+    scores: {
+      popularity: 85, maintenance: 92, ecosystem: 85, learningCurve: 80, enterpriseAdoption: 80,
+      total: 85, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: 'Prisma Schema', description: '声明式数据模型定义，支持关系、枚举、默认值。' },
+        { title: '类型安全查询', description: '完全类型化的查询 API，编译时捕获错误。' },
+        { title: 'Prisma Studio', description: '可视化数据库管理工具，方便数据查看和编辑。' }
+      ],
+      [
+        { type: 'official', title: 'Prisma 文档', url: 'https://prisma.io/docs', description: '官方文档' },
+        { type: 'official', title: 'Prisma Examples', url: 'https://github.com/prisma/prisma-examples', description: '官方示例' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 migrate dev 管理开发迁移', '定期使用 db pull 同步数据库', '使用 Prisma Client 扩展自定义逻辑'] }
+      ],
+      [
+        { techId: 'typeorm', techName: 'TypeORM', strengths: ['支持 Active Record', '功能丰富', '装饰器语法'], weaknesses: ['维护较慢', 'TypeScript 支持问题'], whenToChoose: '需要复杂关系映射' }
+      ],
+      [
+        { scenario: '现代 TypeScript 后端', description: '类型安全的 Node.js 应用', recommended: true },
+        { scenario: '快速 API 开发', description: '配合 tRPC 或 GraphQL 使用', recommended: true }
+      ]
+    )
+  },
+
   // ===== Backend Technologies =====
   nestjs: {
     id: 'nestjs',
@@ -973,6 +1470,205 @@ export const techDatabase: Record<string, TechDetail> = {
     },
     status: 'active',
     deepDive: djangoDeepDive
+  },
+
+  // ===== Python Core Technologies =====
+  flask: {
+    id: 'flask',
+    name: 'Flask',
+    category: 'backend',
+    subcategory: 'Web框架',
+    description: '轻量级的 Python Web 框架，简洁而灵活',
+    tagline: 'Python 微框架的代表',
+    version: '3.0.0',
+    pros: ['极简灵活', '易于学习', '扩展丰富', '文档优秀', '社区活跃'],
+    cons: ['缺少内置功能', '需要手动配置', '大型项目需自行架构'],
+    bestFor: ['小型应用', 'API 服务', '微服务', '原型开发'],
+    notFor: ['大型复杂应用', '需要完整 admin 后台'],
+    learningCurve: 'beginner',
+    ecosystemScore: 85,
+    popularity: { githubStars: 66000 },
+    companyUsers: ['Pinterest', 'LinkedIn', 'Netflix', 'Reddit'],
+    createdYear: 2010,
+    maintainedBy: 'Pallets Projects',
+    officialUrl: 'https://flask.palletsprojects.com',
+    githubUrl: 'https://github.com/pallets/flask',
+    documentationUrl: 'https://flask.palletsprojects.com/en/3.0.x/',
+    alternatives: ['django', 'fastapi', 'tornado'],
+    scores: {
+      popularity: 85, maintenance: 85, ecosystem: 85, learningCurve: 90, enterpriseAdoption: 80,
+      total: 85, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '极简核心', description: '核心功能精简，通过扩展实现所需功能。' },
+        { title: 'Jinja2 模板', description: '强大的模板引擎，支持模板继承和宏。' },
+        { title: 'Werkzeug WSGI', description: '基于 Werkzeug，提供强大的请求处理功能。' }
+      ],
+      [
+        { type: 'official', title: 'Flask 文档', url: 'https://flask.palletsprojects.com', description: '官方文档' },
+        { type: 'tutorial', title: 'Flask Mega-Tutorial', url: 'https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world', description: '经典教程' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用应用工厂模式', '使用蓝图组织路由', '使用 Flask-SQLAlchemy 处理数据库'] }
+      ],
+      [
+        { techId: 'fastapi', techName: 'FastAPI', strengths: ['性能更好', '异步支持', '自动文档'], weaknesses: ['生态较小', '学习曲线'], whenToChoose: '需要高性能 API' }
+      ],
+      [
+        { scenario: '小型 Web 应用', description: '快速开发轻量级应用', recommended: true },
+        { scenario: 'RESTful API', description: '构建灵活的 API 服务', recommended: true }
+      ]
+    )
+  },
+
+  sqlalchemy: {
+    id: 'sqlalchemy',
+    name: 'SQLAlchemy',
+    category: 'backend',
+    subcategory: 'ORM',
+    description: 'Python 的 SQL 工具包和 ORM 框架',
+    tagline: 'Python 最强大的数据库工具',
+    version: '2.0.25',
+    pros: ['功能强大', '灵活性高', '支持多种数据库', 'SQL 表达式语言', '成熟稳定'],
+    cons: ['学习曲线陡峭', '文档复杂', '配置较繁琐'],
+    bestFor: ['复杂数据库操作', '企业级应用', '需要精细控制 SQL'],
+    notFor: ['简单 CRUD', '快速原型'],
+    learningCurve: 'advanced',
+    ecosystemScore: 90,
+    popularity: { githubStars: 8000 },
+    companyUsers: ['Reddit', 'Uber', 'Netflix', 'Dropbox'],
+    createdYear: 2006,
+    maintainedBy: 'Mike Bayer',
+    officialUrl: 'https://www.sqlalchemy.org',
+    githubUrl: 'https://github.com/sqlalchemy/sqlalchemy',
+    documentationUrl: 'https://docs.sqlalchemy.org',
+    alternatives: ['django-orm', 'tortoise-orm', 'peewee'],
+    scores: {
+      popularity: 88, maintenance: 90, ecosystem: 90, learningCurve: 70, enterpriseAdoption: 88,
+      total: 86, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: 'Core 和 ORM', description: '提供 SQL 表达式语言(Core)和对象关系映射(ORM)两层 API。' },
+        { title: '连接池', description: '内置高性能连接池，支持多种连接池策略。' },
+        { title: '事务管理', description: '强大的事务和会话管理，支持嵌套事务。' }
+      ],
+      [
+        { type: 'official', title: 'SQLAlchemy 文档', url: 'https://docs.sqlalchemy.org', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 2.0 风格的查询 API', '合理使用连接池', '使用 Alembic 管理迁移'] }
+      ],
+      [
+        { techId: 'django-orm', techName: 'Django ORM', strengths: ['开箱即用', 'admin 集成', '迁移自动'], weaknesses: ['灵活性较低', '仅 Django 可用'], whenToChoose: '使用 Django 框架时' }
+      ],
+      [
+        { scenario: '复杂数据模型', description: '处理复杂关系和查询', recommended: true },
+        { scenario: '企业级后端', description: '需要精细控制数据库操作', recommended: true }
+      ]
+    )
+  },
+
+  // ===== Go Core Technologies =====
+  echo: {
+    id: 'echo',
+    name: 'Echo',
+    category: 'backend',
+    subcategory: 'Web框架',
+    description: '高性能、极简的 Go Web 框架',
+    tagline: 'Go 的高性能极简框架',
+    version: '4.11.4',
+    pros: ['性能极高', '路由强大', '中间件丰富', '文档优秀', '易于测试'],
+    cons: ['功能相对简单', '缺乏内置 ORM', '社区比 Gin 小'],
+    bestFor: ['REST API', '微服务', '高性能服务', '云原生应用'],
+    notFor: ['复杂业务逻辑', '需要完整 ORM'],
+    learningCurve: 'beginner',
+    ecosystemScore: 75,
+    popularity: { githubStars: 28000 },
+    companyUsers: ['Google', 'Netflix', 'Uber', 'Twitter'],
+    createdYear: 2015,
+    maintainedBy: 'LabStack',
+    officialUrl: 'https://echo.labstack.com',
+    githubUrl: 'https://github.com/labstack/echo',
+    documentationUrl: 'https://echo.labstack.com/guide',
+    alternatives: ['gin', 'fiber', 'go-zero'],
+    scores: {
+      popularity: 80, maintenance: 85, ecosystem: 75, learningCurve: 90, enterpriseAdoption: 75,
+      total: 82, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '路由系统', description: '支持路径参数、查询参数、路由组和中间件链。' },
+        { title: '数据绑定', description: '自动将请求数据绑定到 Go 结构体。' },
+        { title: '中间件', description: '丰富的内置中间件和易于扩展的自定义中间件。' }
+      ],
+      [
+        { type: 'official', title: 'Echo 文档', url: 'https://echo.labstack.com', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用路由组组织 API', '自定义错误处理', '合理使用中间件链'] }
+      ],
+      [
+        { techId: 'gin', techName: 'Gin', strengths: ['社区更大', '中间件丰富', '生态成熟'], weaknesses: ['路由稍弱'], whenToChoose: '需要丰富生态支持' }
+      ],
+      [
+        { scenario: '高性能 API', description: '需要极致性能的服务', recommended: true },
+        { scenario: '微服务架构', description: '轻量、快速的服务节点', recommended: true }
+      ]
+    )
+  },
+
+  gorm: {
+    id: 'gorm',
+    name: 'GORM',
+    category: 'backend',
+    subcategory: 'ORM',
+    description: 'Go 语言的优秀 ORM 库',
+    tagline: 'Go 开发者喜爱的 ORM',
+    version: '1.25.6',
+    pros: ['功能完整', '文档优秀', '社区活跃', '支持多种数据库', '易于使用'],
+    cons: ['性能不如原生 SQL', '复杂查询受限', '反射性能开销'],
+    bestFor: ['快速开发', '标准 CRUD 操作', '多数据库支持'],
+    notFor: ['极致性能要求', '复杂 SQL 查询'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 85,
+    popularity: { githubStars: 35000 },
+    companyUsers: ['Bilibili', 'ByteDance', 'Alibaba'],
+    createdYear: 2013,
+    maintainedBy: 'Jinzhu',
+    officialUrl: 'https://gorm.io',
+    githubUrl: 'https://github.com/go-gorm/gorm',
+    documentationUrl: 'https://gorm.io/docs',
+    alternatives: ['ent', 'bun', 'sqlx'],
+    scores: {
+      popularity: 85, maintenance: 88, ecosystem: 85, learningCurve: 82, enterpriseAdoption: 80,
+      total: 85, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '全功能 ORM', description: '支持关联、预加载、事务、迁移等完整功能。' },
+        { title: 'Hooks 系统', description: '支持 Before/After Create/Update/Delete 等钩子。' },
+        { title: '迁移工具', description: '内置 AutoMigrate 和独立的迁移工具。' }
+      ],
+      [
+        { type: 'official', title: 'GORM 文档', url: 'https://gorm.io', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用结构体标签定义模型', '合理使用 Preload 避免 N+1', '使用事务保证数据一致性'] }
+      ],
+      [
+        { techId: 'ent', techName: 'Ent', strengths: ['类型安全', 'Facebook 出品', '代码生成'], weaknesses: ['学习曲线', '生态较小'], whenToChoose: '需要强类型安全' }
+      ],
+      [
+        { scenario: 'Go Web 开发', description: '配合 Gin/Echo 使用', recommended: true },
+        { scenario: '多数据库项目', description: '需要支持多种数据库', recommended: true }
+      ]
+    )
   },
 
   gin: {
@@ -1095,6 +1791,203 @@ export const techDatabase: Record<string, TechDetail> = {
     deepDive: quarkusDeepDive
   },
 
+  // ===== Java Core Technologies =====
+  'mybatis-plus': {
+    id: 'mybatis-plus',
+    name: 'MyBatis-Plus',
+    category: 'backend',
+    subcategory: 'ORM',
+    description: 'MyBatis 的增强工具，简化 CRUD 操作',
+    tagline: '为简化开发而生',
+    version: '3.5.5',
+    pros: ['零配置 CRUD', '代码生成器', '分页插件', '性能优秀', '中文文档'],
+    cons: ['依赖 MyBatis', '复杂查询仍需 SQL', 'Spring 生态绑定'],
+    bestFor: ['快速开发', '标准 CRUD 应用', 'Spring Boot 项目'],
+    notFor: ['非 Spring 项目', '复杂报表查询'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 80,
+    popularity: { githubStars: 16000 },
+    companyUsers: ['阿里巴巴', '美团', '京东', '小米'],
+    createdYear: 2016,
+    maintainedBy: 'Baomidou',
+    officialUrl: 'https://baomidou.com',
+    githubUrl: 'https://github.com/baomidou/mybatis-plus',
+    documentationUrl: 'https://baomidou.com/pages/24112f',
+    alternatives: ['mybatis', 'hibernate', 'spring-data-jpa'],
+    scores: {
+      popularity: 82, maintenance: 88, ecosystem: 80, learningCurve: 85, enterpriseAdoption: 85,
+      total: 85, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '通用 CRUD', description: '内置 BaseMapper 提供常用 CRUD 方法，无需手写 SQL。' },
+        { title: '条件构造器', description: 'Wrapper 链式 API 构建复杂查询条件。' },
+        { title: '代码生成', description: '根据数据库表自动生成 Entity、Mapper、Service、Controller。' }
+      ],
+      [
+        { type: 'official', title: 'MyBatis-Plus 文档', url: 'https://baomidou.com', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 Lambda 查询避免硬编码', '合理使用分页插件', '结合代码生成器提高效率'] }
+      ],
+      [
+        { techId: 'mybatis', techName: 'MyBatis', strengths: ['更灵活', '原生 SQL 控制'], weaknesses: ['需要手写 SQL', '开发效率较低'], whenToChoose: '需要精细 SQL 控制' }
+      ],
+      [
+        { scenario: 'Spring Boot 后端', description: '快速开发 Java 后端服务', recommended: true },
+        { scenario: '管理后台系统', description: '大量 CRUD 操作的后台', recommended: true }
+      ]
+    )
+  },
+
+  'spring-security': {
+    id: 'spring-security',
+    name: 'Spring Security',
+    category: 'backend',
+    subcategory: '安全框架',
+    description: '强大的 Spring 安全框架，提供认证和授权功能',
+    tagline: '保护 Spring 应用的标准',
+    version: '6.2.1',
+    pros: ['功能全面', '高度可定制', 'OAuth2 支持', '与 Spring 集成', '企业级安全'],
+    cons: ['配置复杂', '学习曲线陡峭', '概念较多', '文档分散'],
+    bestFor: ['企业级应用', '需要复杂权限控制', 'OAuth2/OIDC', '微服务安全'],
+    notFor: ['简单应用', '快速原型'],
+    learningCurve: 'advanced',
+    ecosystemScore: 92,
+    popularity: { githubStars: 8500 },
+    companyUsers: ['阿里巴巴', '腾讯', '京东', '各大银行'],
+    createdYear: 2003,
+    maintainedBy: 'Spring Team',
+    officialUrl: 'https://spring.io/projects/spring-security',
+    githubUrl: 'https://github.com/spring-projects/spring-security',
+    documentationUrl: 'https://docs.spring.io/spring-security/reference',
+    alternatives: ['apache-shiro', 'sa-token', 'jwt'],
+    scores: {
+      popularity: 88, maintenance: 90, ecosystem: 92, learningCurve: 70, enterpriseAdoption: 95,
+      total: 88, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '认证与授权', description: '提供完整的认证和授权机制，支持多种认证方式。' },
+        { title: '过滤器链', description: '基于过滤器的安全处理链，可高度定制。' },
+        { title: '方法级安全', description: '支持注解控制方法级别的权限。' }
+      ],
+      [
+        { type: 'official', title: 'Spring Security 文档', url: 'https://docs.spring.io/spring-security/reference', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 SecurityFilterChain 配置', '自定义 UserDetailsService', '合理使用 @PreAuthorize'] }
+      ],
+      [
+        { techId: 'apache-shiro', techName: 'Apache Shiro', strengths: ['更简单', '独立使用'], weaknesses: ['功能较少', '更新较慢'], whenToChoose: '非 Spring 项目或简单安全需求' }
+      ],
+      [
+        { scenario: '企业级应用安全', description: '复杂的权限控制需求', recommended: true },
+        { scenario: 'OAuth2 集成', description: '第三方登录和授权', recommended: true }
+      ]
+    )
+  },
+
+  // ===== Rust Core Technologies =====
+  seaorm: {
+    id: 'seaorm',
+    name: 'SeaORM',
+    category: 'backend',
+    subcategory: 'ORM',
+    description: 'Rust 的异步 ORM，专为现代 Rust 设计',
+    tagline: 'Rust 的异步 ORM 框架',
+    version: '0.12.0',
+    pros: ['完全异步', '类型安全', '代码生成', '多数据库支持', '活跃维护'],
+    cons: ['生态相对较小', '编译时间较长', '学习曲线存在', '企业采用率低'],
+    bestFor: ['Rust 异步应用', '需要类型安全', '现代 Rust 项目'],
+    notFor: ['简单脚本', '快速原型', '团队无 Rust 经验'],
+    learningCurve: 'advanced',
+    ecosystemScore: 65,
+    popularity: { githubStars: 6000 },
+    companyUsers: ['Starfish Finance', 'Rust 开源项目'],
+    createdYear: 2021,
+    maintainedBy: 'SeaQL Team',
+    officialUrl: 'https://www.sea-ql.org/SeaORM',
+    githubUrl: 'https://github.com/SeaQL/sea-orm',
+    documentationUrl: 'https://www.sea-ql.org/SeaORM/docs',
+    alternatives: ['diesel', 'sqlx', 'tokio-postgres'],
+    scores: {
+      popularity: 70, maintenance: 88, ecosystem: 65, learningCurve: 65, enterpriseAdoption: 50,
+      total: 72, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '异步优先', description: '基于 async/await 设计，完美集成 Tokio 运行时。' },
+        { title: '实体生成', description: '从数据库模式自动生成 Rust 实体代码。' },
+        { title: '关系映射', description: '支持一对一、一对多、多对多关系。' }
+      ],
+      [
+        { type: 'official', title: 'SeaORM 文档', url: 'https://www.sea-ql.org/SeaORM/docs', description: '官方文档' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 sea-orm-cli 生成实体', '合理使用连接池', '配合迁移工具使用'] }
+      ],
+      [
+        { techId: 'diesel', techName: 'Diesel', strengths: ['编译时查询检查', '同步设计', '更成熟'], weaknesses: ['不支持异步', '学习曲线陡峭'], whenToChoose: '同步 Rust 应用' }
+      ],
+      [
+        { scenario: 'Rust Web 后端', description: '配合 Axum/Actix-web 使用', recommended: true },
+        { scenario: '异步数据处理', description: '需要高性能异步数据库操作', recommended: true }
+      ]
+    )
+  },
+
+  tokio: {
+    id: 'tokio',
+    name: 'Tokio',
+    category: 'backend',
+    subcategory: '异步运行时',
+    description: 'Rust 的异步运行时，提供 I/O、定时器、多任务等功能',
+    tagline: 'Rust 异步编程的基石',
+    version: '1.35.0',
+    pros: ['高性能异步', '多线程调度', '丰富的生态', '生产验证', '内存安全'],
+    cons: ['学习曲线陡峭', '调试困难', '生态分散', '编译时间久'],
+    bestFor: ['高性能网络服务', '异步应用', '实时系统', '微服务'],
+    notFor: ['简单脚本', 'CPU 密集型任务', '团队无 Rust 经验'],
+    learningCurve: 'advanced',
+    ecosystemScore: 80,
+    popularity: { githubStars: 25000 },
+    companyUsers: ['Discord', 'Fly.io', 'AWS (部分服务)'],
+    createdYear: 2016,
+    maintainedBy: 'Tokio Team',
+    officialUrl: 'https://tokio.rs',
+    githubUrl: 'https://github.com/tokio-rs/tokio',
+    documentationUrl: 'https://docs.rs/tokio',
+    alternatives: ['async-std', 'smol', 'may'],
+    scores: {
+      popularity: 85, maintenance: 92, ecosystem: 80, learningCurve: 60, enterpriseAdoption: 70,
+      total: 80, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '多线程调度', description: '工作窃取调度器，高效利用多核 CPU。' },
+        { title: '异步 I/O', description: '基于 epoll/kqueue/IOCP 的高性能异步 I/O。' },
+        { title: '超时与间隔', description: '内置定时器功能，支持超时和周期性任务。' }
+      ],
+      [
+        { type: 'official', title: 'Tokio 文档', url: 'https://tokio.rs/tokio/tutorial', description: '官方教程' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 tokio::spawn 创建任务', '合理使用通道进行通信', '避免阻塞运行时'] }
+      ],
+      [
+        { techId: 'async-std', techName: 'async-std', strengths: ['标准库风格 API', '更简单'], weaknesses: ['生态较小', '企业采用率低'], whenToChoose: '偏好标准库风格的团队' }
+      ],
+      [
+        { scenario: '高性能网络服务', description: '需要处理大量并发连接', recommended: true },
+        { scenario: '实时通信', description: 'WebSocket、聊天服务等', recommended: true }
+      ]
+    )
+  },
 
   // ===== Archived Technologies =====
   axum: {
