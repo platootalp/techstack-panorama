@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
-import { 
-  Search, 
-  Filter, 
-  ArrowUpDown, 
-  LayoutGrid, 
+import {
+  Search,
+  Filter,
+  ArrowUpDown,
+  LayoutGrid,
   List,
   ChevronRight,
   TrendingUp,
@@ -30,6 +30,8 @@ import {
 import { getActiveTech, getCategories, getSubcategories } from '@/data/tech/tech-database'
 import type { TechDetail } from '@/data/tech/types'
 import { ScoreBadge } from '@/components/tech/ScoreBadge'
+import { usePagination } from '@/hooks/use-pagination'
+import { PaginationControl } from '@/components/ui/pagination-control'
 
 type SortOption = 'score' | 'name' | 'popularity' | 'maintenance' | 'ecosystem'
 type ViewMode = 'grid' | 'list'
@@ -39,6 +41,8 @@ const categoryLabels: Record<string, string> = {
   backend: '后端',
   ai: 'AI',
   infrastructure: '基础设施',
+  'llm-algorithm': 'LLM算法',
+  'llm-application': 'LLM应用',
 }
 
 export default function TechStackPage() {
@@ -85,6 +89,22 @@ export default function TechStackPage() {
     })
     return result
   }, [allTech, searchQuery, selectedCategory, selectedSubcategory, sortBy])
+
+  const {
+    currentData,
+    currentPage,
+    pageSize,
+    totalPages,
+    totalItems,
+    pageSizeOptions,
+    setPage,
+    setPageSize,
+  } = usePagination(filteredTech, { initialPageSize: 12 })
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setPage(1)
+  }, [searchQuery, selectedCategory, selectedSubcategory, sortBy, setPage])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -169,7 +189,7 @@ export default function TechStackPage() {
 
         <div className="flex items-center justify-between mb-4">
           <div className="text-gray-600 dark:text-gray-400">
-            找到 <span className="font-bold text-blue-600">{filteredTech.length}</span> 个技术
+            找到 <span className="font-bold text-blue-600">{totalItems}</span> 个技术
           </div>
           <Link 
             href="/tech-stack/archived" 
@@ -182,21 +202,32 @@ export default function TechStackPage() {
 
         {viewMode === 'grid' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTech.map((tech) => <TechCard key={tech.id} tech={tech} />)}
+            {currentData.map((tech) => <TechCard key={tech.id} tech={tech} />)}
           </div>
         ) : (
           <div className="space-y-4">
-            {filteredTech.map((tech) => <TechListItem key={tech.id} tech={tech} />)}
+            {currentData.map((tech) => <TechListItem key={tech.id} tech={tech} />)}
           </div>
         )}
 
-        {filteredTech.length === 0 && (
+        {currentData.length === 0 && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">未找到相关技术</h3>
             <p className="text-gray-500">尝试调整搜索词或筛选条件</p>
           </div>
         )}
+
+        <PaginationControl
+          currentPage={currentPage}
+          totalPages={totalPages}
+          pageSize={pageSize}
+          totalItems={totalItems}
+          pageSizeOptions={pageSizeOptions}
+          onPageChange={setPage}
+          onPageSizeChange={setPageSize}
+          className="mt-8"
+        />
 
         <div className="text-center mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
           <p className="text-gray-500 dark:text-gray-400 text-sm">💡 评分基于多维度数据，仅供参考</p>
