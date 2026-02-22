@@ -69,11 +69,11 @@ export function Sidebar() {
   return (
     <div
       className={cn(
-        'flex flex-col h-screen bg-gray-900 text-white fixed left-0 top-0 transition-all duration-300 ease-in-out',
+        'flex flex-col h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white fixed left-0 top-0 transition-all duration-300 ease-in-out border-r border-gray-200 dark:border-gray-800',
         collapsed ? 'w-16' : 'w-64'
       )}
     >
-      <div className="flex items-center justify-between px-4 py-4 border-b border-gray-800">
+      <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-gray-800">
         <Link
           href="/"
           className={cn(
@@ -88,7 +88,7 @@ export function Sidebar() {
         <button
           onClick={toggleCollapsed}
           className={cn(
-            'p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/10 transition-colors',
+            'p-1.5 rounded-md text-gray-500 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors',
             collapsed && 'mx-auto'
           )}
           title={collapsed ? '展开侧边栏' : '收起侧边栏'}
@@ -106,8 +106,8 @@ export function Sidebar() {
               className={cn(
                 'flex items-center px-3 py-2.5 rounded-lg transition-all duration-200 group',
                 pathname === route.href
-                  ? 'bg-white/10 text-white'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/10',
+                  ? 'bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white'
+                  : 'text-gray-600 dark:text-zinc-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10',
                 collapsed && 'justify-center px-2'
               )}
             >
@@ -131,10 +131,10 @@ export function Sidebar() {
         </nav>
       </div>
 
-      <div className="px-4 py-4 border-t border-gray-800">
+      <div className="px-4 py-4 border-t border-gray-200 dark:border-gray-800">
         <div
           className={cn(
-            'text-xs text-zinc-500 transition-all duration-300',
+            'text-xs text-gray-500 dark:text-zinc-500 transition-all duration-300',
             collapsed && 'text-center'
           )}
         >

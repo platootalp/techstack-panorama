@@ -2,6 +2,8 @@
 
 import { TechCategoryCard } from '@/components/tech'
 import type { TechCategory } from '@/data/tech/types'
+import { useState } from 'react'
+import { cn } from '@/lib/utils'
 
 // LLM算法 - 底层技术（模型、训练、优化）
 const llmAlgorithmCategories: TechCategory[] = [
@@ -312,178 +314,79 @@ const llmApplicationCategories: TechCategory[] = [
   },
 ]
 
-import { useState } from 'react'
-
 export default function AIStack() {
   const [activeTab, setActiveTab] = useState<'algorithm' | 'application'>('algorithm')
   const categories = activeTab === 'algorithm' ? llmAlgorithmCategories : llmApplicationCategories
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(180deg, #0f0f1a 0%, #1a0f2e 50%, #0f0f1a 100%)',
-      padding: '40px 20px',
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto 48px auto',
-        textAlign: 'center',
-      }}>
-        <h1 style={{
-          fontSize: '42px',
-          fontWeight: 700,
-          background: 'linear-gradient(135deg, #C084FC, #A855F7, #9333EA)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          margin: '0 0 16px 0',
-          letterSpacing: '-0.02em',
-        }}>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50 to-indigo-50 dark:from-[#0f0f1a] dark:via-[#1a0f2e] dark:to-[#0f0f1a] py-10 px-5">
+      <div className="max-w-[1200px] mx-auto mb-12 text-center">
+        <h1 className="text-[42px] font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent mb-4 tracking-tight">
           AI 开发技术栈
         </h1>
-        <p style={{
-          fontSize: '18px',
-          color: '#94a3b8',
-          margin: 0,
-          maxWidth: '600px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          lineHeight: 1.6,
-        }}>
+        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-[600px] mx-auto leading-relaxed">
           大语言模型、多模态、RAG、Agent - AI开发全生态
         </p>
       </div>
 
       {/* Tab Switcher */}
-      <div style={{
-        maxWidth: '600px',
-        margin: '0 auto 40px auto',
-        display: 'flex',
-        gap: '12px',
-        padding: '6px',
-        background: '#ffffff08',
-        borderRadius: '16px',
-        border: '1px solid #ffffff10',
-      }}>
+      <div className="max-w-[600px] mx-auto mb-10 flex gap-3 p-1.5 rounded-2xl bg-white/50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10">
         <button
           onClick={() => setActiveTab('algorithm')}
-          style={{
-            flex: 1,
-            padding: '14px 24px',
-            borderRadius: '12px',
-            border: 'none',
-            cursor: 'pointer',
-            fontSize: '15px',
-            fontWeight: 600,
-            transition: 'all 0.3s ease',
-            background: activeTab === 'algorithm' 
-              ? 'linear-gradient(135deg, #A855F7, #9333EA)' 
-              : 'transparent',
-            color: activeTab === 'algorithm' ? '#fff' : '#94a3b8',
-          }}
+          className={cn(
+            'flex-1 py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300',
+            activeTab === 'algorithm'
+              ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white'
+              : 'text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-white/5'
+          )}
         >
-          <span style={{ fontSize: '18px', marginRight: '8px' }}>🔬</span>
+          <span className="text-lg mr-2">🔬</span>
           LLM算法
-          <span style={{
-            display: 'block',
-            fontSize: '11px',
-            fontWeight: 400,
-            opacity: 0.8,
-            marginTop: '2px',
-          }}>
+          <span className="block text-[11px] font-normal opacity-80 mt-0.5">
             模型、训练、优化
           </span>
         </button>
         <button
           onClick={() => setActiveTab('application')}
-          style={{
-            flex: 1,
-            padding: '14px 24px',
-            borderRadius: '12px',
-            border: 'none',
-            cursor: 'pointer',
-            fontSize: '15px',
-            fontWeight: 600,
-            transition: 'all 0.3s ease',
-            background: activeTab === 'application' 
-              ? 'linear-gradient(135deg, #10B981, #059669)' 
-              : 'transparent',
-            color: activeTab === 'application' ? '#fff' : '#94a3b8',
-          }}
+          className={cn(
+            'flex-1 py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-300',
+            activeTab === 'application'
+              ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white'
+              : 'text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-white/5'
+          )}
         >
-          <span style={{ fontSize: '18px', marginRight: '8px' }}>🚀</span>
+          <span className="text-lg mr-2">🚀</span>
           LLM应用
-          <span style={{
-            display: 'block',
-            fontSize: '11px',
-            fontWeight: 400,
-            opacity: 0.8,
-            marginTop: '2px',
-          }}>
+          <span className="block text-[11px] font-normal opacity-80 mt-0.5">
             框架、工具、平台
           </span>
         </button>
       </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto 32px auto',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '24px',
-        flexWrap: 'wrap',
-      }}>
+      <div className="max-w-[1200px] mx-auto mb-8 flex justify-center gap-6 flex-wrap">
         {[
           { color: '#10B981', label: '主流 - 广泛采用' },
           { color: '#F59E0B', label: '常用 - 稳定使用' },
           { color: '#8B5CF6', label: '新星 - 快速崛起' },
         ].map((item, i) => (
-          <div key={i} style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '8px 16px',
-            background: '#ffffff08',
-            borderRadius: '24px',
-            border: '1px solid #ffffff10',
-          }}>
-            <span style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: item.color,
-            }} />
-            <span style={{ fontSize: '13px', color: '#94a3b8' }}>{item.label}</span>
+          <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10">
+            <span
+              className="w-2 h-2 rounded-full"
+              style={{ background: item.color }}
+            />
+            <span className="text-[13px] text-slate-600 dark:text-slate-400">{item.label}</span>
           </div>
         ))}
       </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-        gap: '24px',
-      }}>
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {categories.map((category) => (
           <TechCategoryCard key={category.id} category={category} />
         ))}
       </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '48px auto 0 auto',
-        textAlign: 'center',
-        padding: '24px',
-        background: '#ffffff05',
-        borderRadius: '16px',
-        border: '1px solid #ffffff10',
-      }}>
-        <p style={{
-          margin: 0,
-          fontSize: '14px',
-          color: '#64748b',
-        }}>
+      <div className="max-w-[1200px] mx-auto mt-12 text-center p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10">
+        <p className="text-sm text-slate-600 dark:text-slate-500">
           💡 点击卡片可展开查看更多技术 | AI技术发展迅速,建议关注最新开源模型和工具
         </p>
       </div>

@@ -1041,12 +1041,12 @@ export default function BackendStack() {
   const categories = categoriesMap[activeTab]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f0f1a] via-[#1a0f2e] to-[#0f0f1a] py-10 px-5">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50 to-indigo-50 dark:from-[#0f0f1a] dark:via-[#1a0f2e] dark:to-[#0f0f1a] py-10 px-5">
       <div className="max-w-6xl mx-auto mb-12 text-center">
         <h1 className="text-[42px] font-bold bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent mb-4 tracking-tight">
           后端技术栈
         </h1>
-        <p className="text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
+        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
           Python、Go、Java、Rust、Node.js - 主流后端开发语言生态
         </p>
       </div>
@@ -1086,7 +1086,7 @@ export default function BackendStack() {
               className="w-2 h-2 rounded-full"
               style={{ background: item.color }}
             />
-            <span className="text-[13px] text-slate-400">{item.label}</span>
+            <span className="text-[13px] text-slate-600 dark:text-slate-400">{item.label}</span>
           </div>
         ))}
       </div>
@@ -1098,7 +1098,7 @@ export default function BackendStack() {
       </div>
 
       <div className="footer-note max-w-6xl mx-auto">
-        <p className="text-sm text-slate-500 m-0">
+        <p className="text-sm text-slate-600 dark:text-slate-500 m-0">
           💡 点击卡片可展开查看更多技术 | 选择不同语言标签切换查看对应技术栈
         </p>
       </div>
