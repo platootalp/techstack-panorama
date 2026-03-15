@@ -1572,6 +1572,220 @@ export const techDatabase: Record<string, TechDetail> = {
     )
   },
 
+  // ===== Python CLI & Terminal Libraries =====
+  rich: {
+    id: 'rich',
+    name: 'Rich',
+    category: 'backend',
+    subcategory: '终端美化',
+    description: 'Python 的终端美化库，支持富文本、表格、进度条、语法高亮等',
+    tagline: '让终端输出更美观',
+    version: '13.7.0',
+    pros: ['丰富的输出格式', '语法高亮', '进度条支持', '表格渲染', 'Markdown 支持', '易于使用'],
+    cons: ['仅用于终端', '大量输出可能影响性能', '依赖较多'],
+    bestFor: ['CLI 工具开发', '数据展示', '日志美化', '开发调试', '报告生成'],
+    notFor: ['非终端应用', '高性能日志系统'],
+    learningCurve: 'beginner',
+    ecosystemScore: 82,
+    popularity: { githubStars: 49000 },
+    companyUsers: ['Prefect', 'Textualize', 'Robocorp', 'Snowflake'],
+    createdYear: 2019,
+    maintainedBy: 'Will McGugan (Textualize)',
+    officialUrl: 'https://rich.readthedocs.io',
+    githubUrl: 'https://github.com/Textualize/rich',
+    documentationUrl: 'https://rich.readthedocs.io/en/stable/',
+    alternatives: ['colorama', 'termcolor', 'blessed', 'curses'],
+    scores: {
+      popularity: 85, maintenance: 90, ecosystem: 82, learningCurve: 92, enterpriseAdoption: 75,
+      total: 85, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '富文本渲染', description: '支持粗体、斜体、下划线、删除线等多种文本样式，以及 256 色和真彩色支持。' },
+        { title: '语法高亮', description: '内置代码语法高亮功能，支持 100+ 种编程语言。' },
+        { title: '表格和布局', description: '支持复杂的表格渲染、列对齐、树形结构、面板布局等。' },
+        { title: '进度条', description: '提供多种进度条样式，支持多任务进度显示。' }
+      ],
+      [
+        { type: 'official', title: 'Rich 文档', url: 'https://rich.readthedocs.io', description: '官方文档' },
+        { type: 'tutorial', title: 'Rich GitHub', url: 'https://github.com/Textualize/rich', description: '示例和源码' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 Console 类统一输出', '合理使用样式避免过度装饰', '结合 logging 模块使用', '使用 traceback 美化异常'] }
+      ],
+      [
+        { techId: 'click', techName: 'Click', strengths: ['CLI 框架完整', '命令解析强大', '生态成熟'], weaknesses: ['终端美化功能有限'], whenToChoose: '需要完整 CLI 框架时' }
+      ],
+      [
+        { scenario: 'CLI 工具开发', description: '美化命令行工具输出，提升用户体验', recommended: true },
+        { scenario: '数据展示', description: '以表格、树形等形式展示结构化数据', recommended: true },
+        { scenario: '日志美化', description: '美化日志输出，添加颜色和格式', recommended: true },
+        { scenario: 'Web 应用', description: 'Rich 仅用于终端，不适用于 Web', recommended: false }
+      ]
+    )
+  },
+
+  typer: {
+    id: 'typer',
+    name: 'Typer',
+    category: 'backend',
+    subcategory: 'CLI框架',
+    description: '基于 Python 类型提示的现代化 CLI 框架，构建于 Click 之上',
+    tagline: '基于类型提示的 CLI 框架',
+    version: '0.9.0',
+    pros: ['类型提示驱动', '自动补全', '文档自动生成', '代码简洁', '基于 Click 生态', '支持异步'],
+    cons: ['相对较新', '生态较小', '复杂场景仍需 Click'],
+    bestFor: ['CLI 工具开发', '类型安全项目', '快速原型', '开发者工具'],
+    notFor: ['复杂 CLI 应用', '需要高度定制化的场景'],
+    learningCurve: 'beginner',
+    ecosystemScore: 75,
+    popularity: { githubStars: 14500 },
+    companyUsers: ['Prefect', 'Modal', 'Textualize', 'Explosion AI'],
+    createdYear: 2019,
+    maintainedBy: 'Sebastián Ramírez (tiangolo)',
+    officialUrl: 'https://typer.tiangolo.com',
+    githubUrl: 'https://github.com/tiangolo/typer',
+    documentationUrl: 'https://typer.tiangolo.com',
+    alternatives: ['click', 'argparse', 'fire', 'docopt'],
+    scores: {
+      popularity: 78, maintenance: 88, ecosystem: 75, learningCurve: 90, enterpriseAdoption: 65,
+      total: 80, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '类型提示驱动', description: '利用 Python 类型提示自动生成命令行参数、选项和文档。' },
+        { title: '自动补全', description: '支持 Shell 自动补全（Bash、Zsh、Fish、PowerShell）。' },
+        { title: '嵌套命令', description: '支持多层嵌套命令结构，适合构建复杂的 CLI 应用。' },
+        { title: '与 Rich 集成', description: '可与 Rich 无缝集成，输出美观的终端内容。' }
+      ],
+      [
+        { type: 'official', title: 'Typer 文档', url: 'https://typer.tiangolo.com', description: '官方文档，优秀的中文支持' },
+        { type: 'tutorial', title: 'Typer 教程', url: 'https://typer.tiangolo.com/tutorial/', description: '官方教程' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用类型提示定义参数', '配合 Rich 美化输出', '使用回调函数验证参数', '生成自动补全脚本'] }
+      ],
+      [
+        { techId: 'click', techName: 'Click', strengths: ['功能完整', '生态成熟', '更多插件'], weaknesses: ['不使用类型提示', '代码相对冗长'], whenToChoose: '需要更成熟的 CLI 框架' }
+      ],
+      [
+        { scenario: 'CLI 工具开发', description: '基于类型提示快速构建命令行工具', recommended: true },
+        { scenario: 'FastAPI 生态项目', description: '与 FastAPI 同一作者，风格一致', recommended: true },
+        { scenario: '简单脚本', description: '比 argparse 更简洁的类型安全方案', recommended: true },
+        { scenario: '复杂 CLI 应用', description: 'Click 可能更适合复杂场景', recommended: false }
+      ]
+    )
+  },
+
+  'prompt-toolkit': {
+    id: 'prompt-toolkit',
+    name: 'prompt_toolkit',
+    category: 'backend',
+    subcategory: '交互式终端',
+    description: 'Python 的交互式命令行构建库，支持自动补全、语法高亮、多行编辑等功能',
+    tagline: '构建强大的交互式命令行应用',
+    version: '3.0.43',
+    pros: ['强大的输入功能', '自动补全系统', '语法高亮', '多行编辑', '跨平台', '历史悠久'],
+    cons: ['学习曲线较陡', '文档分散', 'API 复杂', '依赖较多'],
+    bestFor: ['交互式 CLI', 'REPL 开发', '命令行编辑器', '数据库客户端', 'Shell 工具'],
+    notFor: ['简单脚本', '静态输出', '轻量级应用'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 85,
+    popularity: { githubStars: 8600 },
+    companyUsers: ['Python', 'IPython', 'Jupyter', 'Xonsh', 'pgcli'],
+    createdYear: 2014,
+    maintainedBy: 'Jonathan Slenders',
+    officialUrl: 'https://python-prompt-toolkit.readthedocs.io',
+    githubUrl: 'https://github.com/prompt-toolkit/python-prompt-toolkit',
+    documentationUrl: 'https://python-prompt-toolkit.readthedocs.io',
+    alternatives: ['readline', 'curses', 'blessed', 'rich'],
+    scores: {
+      popularity: 82, maintenance: 85, ecosystem: 85, learningCurve: 70, enterpriseAdoption: 80,
+      total: 81, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '自动补全', description: '强大的自动补全系统，支持模糊匹配、多种补全源和可定制的补全菜单。' },
+        { title: '语法高亮', description: '基于词法分析器的语法高亮系统，支持动态着色和自定义样式。' },
+        { title: '多行编辑', description: '支持类似 IDE 的多行文本编辑功能，包括撤销/重做、选区等。' },
+        { title: '跨平台', description: 'Windows、macOS、Linux 全面支持，统一 API 无需平台适配。' }
+      ],
+      [
+        { type: 'official', title: 'prompt_toolkit 文档', url: 'https://python-prompt-toolkit.readthedocs.io', description: '官方文档' },
+        { type: 'tutorial', title: 'prompt_toolkit GitHub', url: 'https://github.com/prompt-toolkit/python-prompt-toolkit', description: '示例和源码' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 PromptSession 管理会话', '合理配置补全器', '自定义键绑定提升体验', '使用 history 保存输入历史'] }
+      ],
+      [
+        { techId: 'readline', techName: 'readline', strengths: ['Python 标准库', '无需依赖', '简单够用'], weaknesses: ['功能有限', '仅 Unix', 'Windows 需 pyreadline'], whenToChoose: '简单需求或标准库优先' }
+      ],
+      [
+        { scenario: '交互式 CLI 工具', description: '需要用户输入的复杂命令行工具', recommended: true },
+        { scenario: '数据库客户端', description: '类似 pgcli、mycli 的交互式数据库工具', recommended: true },
+        { scenario: 'REPL 开发', description: '构建自定义的交互式解释器', recommended: true },
+        { scenario: '简单输入', description: '仅需 basic input() 的场景', recommended: false }
+      ]
+    )
+  },
+
+  httpx: {
+    id: 'httpx',
+    name: 'httpx',
+    category: 'backend',
+    subcategory: 'HTTP客户端',
+    description: '现代化的 Python HTTP 客户端，支持同步和异步 API，requests 的升级版',
+    tagline: 'Python 的下一代 HTTP 客户端',
+    version: '0.26.0',
+    pros: ['同步+异步双API', 'HTTP/2 支持', '类型提示完整', 'requests 兼容', '高性能', '流式支持'],
+    cons: ['比 requests 重', '异步学习曲线', '某些功能仍在开发'],
+    bestFor: ['异步应用', '高性能爬虫', 'API 客户端', '微服务通信', '并发请求'],
+    notFor: ['简单脚本', '资源受限环境'],
+    learningCurve: 'beginner',
+    ecosystemScore: 80,
+    popularity: { githubStars: 12500 },
+    companyUsers: ['Tom Christie', 'Starlette', 'FastAPI', 'Prefect', 'Celery'],
+    createdYear: 2019,
+    maintainedBy: 'Tom Christie (Encode)',
+    officialUrl: 'https://www.python-httpx.org',
+    githubUrl: 'https://github.com/encode/httpx',
+    documentationUrl: 'https://www.python-httpx.org',
+    alternatives: ['requests', 'aiohttp', 'urllib3', 'treq'],
+    scores: {
+      popularity: 82, maintenance: 90, ecosystem: 80, learningCurve: 88, enterpriseAdoption: 75,
+      total: 84, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '同步与异步', description: '同时支持同步 Client 和异步 AsyncClient，方便在 sync 和 async 代码中使用。' },
+        { title: 'HTTP/2 支持', description: '原生支持 HTTP/2 协议，无需额外配置，提升性能和并发能力。' },
+        { title: '流式传输', description: '支持请求和响应的流式处理，适合大文件上传下载和实时数据。' },
+        { title: 'WebSocket', description: '通过额外的库支持 WebSocket 连接，实现双向实时通信。' }
+      ],
+      [
+        { type: 'official', title: 'HTTPX 文档', url: 'https://www.python-httpx.org', description: '官方文档' },
+        { type: 'tutorial', title: 'HTTPX 快速入门', url: 'https://www.python-httpx.org/quickstart/', description: '快速开始指南' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用 AsyncClient 进行异步请求', '配置合理的超时策略', '使用连接池复用连接', '流式处理大文件'] }
+      ],
+      [
+        { techId: 'requests', techName: 'requests', strengths: ['更简单', '生态最成熟', '学习资源丰富'], weaknesses: ['不支持异步', '无 HTTP/2', '性能较低'], whenToChoose: '简单脚本或同步应用' },
+        { techId: 'aiohttp', techName: 'aiohttp', strengths: ['更成熟', 'WebSocket 内置', '服务器功能'], weaknesses: ['仅异步', 'API 风格不同'], whenToChoose: '需要 WebSocket 或服务器功能' }
+      ],
+      [
+        { scenario: '异步爬虫', description: '配合 asyncio 实现高性能并发爬虫', recommended: true },
+        { scenario: '微服务调用', description: '服务间异步 HTTP 通信', recommended: true },
+        { scenario: 'API 客户端', description: '需要类型安全和现代 API 设计', recommended: true },
+        { scenario: '简单脚本', description: 'requests 可能更简单', recommended: false }
+      ]
+    )
+  },
+
   // ===== Go Core Technologies =====
   echo: {
     id: 'echo',

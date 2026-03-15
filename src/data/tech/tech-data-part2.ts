@@ -19,7 +19,10 @@ export const pythonData: TechItem[] = [
   { category: '日志', tech: 'structlog / Loguru / logging / ELK Stack', popular: 'structlog / Loguru', description: '结构化日志' },
   { category: '测试', tech: 'pytest / unittest / hypothesis / locust / factory_boy / faker', popular: 'pytest', description: 'Python测试生态' },
   { category: '文档生成', tech: 'FastAPI Swagger / MkDocs / Sphinx / Redoc', popular: 'FastAPI Swagger', description: '自动API文档' },
-  { category: 'CLI工具', tech: 'Click / Typer / Argparse / Rich / Fire', popular: 'Typer + Rich', description: '命令行工具开发' },
+  { category: 'CLI工具', tech: 'Typer / Click / Argparse / Fire', popular: 'Typer', description: '基于类型提示的现代 CLI 框架' },
+  { category: '终端美化', tech: 'Rich / Textual / Colorama / Termcolor / Blessed', popular: 'Rich', description: '终端富文本渲染与美化' },
+  { category: '交互式终端', tech: 'prompt_toolkit / readline / curses / InquirerPy / questionary', popular: 'prompt_toolkit', description: '交互式命令行与输入处理' },
+  { category: 'HTTP客户端', tech: 'httpx / requests / aiohttp / urllib3 / treq', popular: 'httpx', description: '现代异步与同步HTTP客户端' },
   { category: '部署运行', tech: 'Gunicorn + Uvicorn / Docker / Systemd / Supervisor', popular: 'Gunicorn + Uvicorn', description: '生产环境部署' },
 ]
 

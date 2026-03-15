@@ -180,6 +180,42 @@ export const techScoreData: Record<string, TechScores> = {
     total: 86,
     lastCalculated: '2025-02-15T10:00:00Z'
   },
+  rich: {
+    popularity: 85,
+    maintenance: 90,
+    ecosystem: 82,
+    learningCurve: 92,
+    enterpriseAdoption: 75,
+    total: 85,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  typer: {
+    popularity: 78,
+    maintenance: 88,
+    ecosystem: 75,
+    learningCurve: 90,
+    enterpriseAdoption: 65,
+    total: 80,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  'prompt-toolkit': {
+    popularity: 82,
+    maintenance: 85,
+    ecosystem: 85,
+    learningCurve: 70,
+    enterpriseAdoption: 80,
+    total: 81,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
+  httpx: {
+    popularity: 82,
+    maintenance: 90,
+    ecosystem: 80,
+    learningCurve: 88,
+    enterpriseAdoption: 75,
+    total: 84,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
 
   // ===== Go Technologies =====
   gin: {
