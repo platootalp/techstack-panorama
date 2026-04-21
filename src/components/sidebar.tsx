@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
-import { Home, Code2, Server, Bot, Network, Layers, PanelLeft, PanelRight } from 'lucide-react'
+import { Home, Code2, Server, Bot, Network, Layers, PanelLeft, PanelRight, Database } from 'lucide-react'
 
 const routes = [
   {
@@ -42,6 +42,12 @@ const routes = [
     icon: Network,
     href: '/infrastructure',
     color: 'text-blue-500',
+  },
+  {
+    label: '存储技术',
+    icon: Database,
+    href: '/storage',
+    color: 'text-orange-500',
   },
 ]
 

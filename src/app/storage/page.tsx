@@ -1,84 +1,123 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
-import Link from 'next/link'
-import {
-  Search,
-  Filter,
-  ArrowUpDown,
-  LayoutGrid,
-  List,
-  ChevronRight,
-  TrendingUp,
-  Database
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { getTechByCategory, searchTech } from '@/data/tech/tech-database'
-import type { TechDetail } from '@/data/tech/types'
-import { ScoreBadge } from '@/components/tech/ScoreBadge'
+import { TechCategoryCard } from '@/components/tech'
+import type { TechCategory } from '@/data/tech/types'
 import { usePagination } from '@/hooks/use-pagination'
 import { PaginationControl } from '@/components/ui/pagination-control'
 
-type SortOption = 'score' | 'name' | 'popularity' | 'maintenance' | 'ecosystem'
-type ViewMode = 'grid' | 'list'
-
-const subcategoryLabels: Record<string, string> = {
-  all: '全部',
-  relational: '关系型数据库',
-  columnar: '列式存储',
-  document: '文档数据库',
-  'key-value': '键值存储',
-  timeseries: '时序数据库',
-  vector: '向量数据库',
-  graph: '图数据库',
-  'object-storage': '对象存储',
-}
+const storageCategories: TechCategory[] = [
+  {
+    id: 'relational',
+    name: '关系型数据库',
+    icon: '🔐',
+    color: '#336791',
+    problem: '结构化数据存储与事务一致性',
+    description: '支持SQL查询、ACID事务、复杂关联查询，适用于需要强数据一致性和结构化存储的企业级应用。',
+    mainstream: [
+      { name: 'PostgreSQL', description: '功能最强大的开源关系型数据库，SQL标准支持最好', popularity: 'high' },
+      { name: 'MySQL', description: '互联网应用最广泛，生态成熟，运维简单', popularity: 'high' },
+      { name: 'TiDB', description: '分布式SQL，水平扩展，MySQL兼容', popularity: 'rising' },
+      { name: 'CockroachDB', description: '分布式SQL，Kubernetes原生，强一致', popularity: 'rising' },
+    ]
+  },
+  {
+    id: 'columnar',
+    name: '列式存储',
+    icon: '📊',
+    color: '#FF6B35',
+    problem: '海量数据分析与OLAP查询',
+    description: '专为分析场景优化，列式存储向量化执行，高压缩率，支持万亿级数据秒级查询响应。',
+    mainstream: [
+      { name: 'ClickHouse', description: 'OLAP领域标杆，万亿级数据秒级响应', popularity: 'high' },
+      { name: 'Apache Druid', description: '实时数据分析，秒级摄入延迟', popularity: 'medium' },
+      { name: 'StarRocks', description: '新一代MPP数据库，MySQL协议支持', popularity: 'rising' },
+      { name: 'Apache Pinot', description: '实时分析+低延迟查询，LinkedIn出品', popularity: 'medium' },
+    ]
+  },
+  {
+    id: 'document',
+    name: '文档数据库',
+    icon: '📄',
+    color: '#4DB33D',
+    problem: '灵活Schema与半结构化数据',
+    description: 'JSON文档模型，无需预定义结构，天然适配敏捷开发和动态业务需求。',
+    mainstream: [
+      { name: 'MongoDB', description: '最流行的文档数据库，生态完善', popularity: 'high' },
+      { name: 'Amazon DynamoDB', description: 'AWS全托管，Serverless，极高可用', popularity: 'high' },
+      { name: 'Couchbase', description: '高性能，SQL++查询，内存优先', popularity: 'medium' },
+    ]
+  },
+  {
+    id: 'key-value',
+    name: '键值存储',
+    icon: '⚡',
+    color: '#DC382D',
+    problem: '极高读写性能与缓存场景',
+    description: '极简数据模型，超高读写性能，主要用作缓存层或对延迟敏感的场景。',
+    mainstream: [
+      { name: 'Redis', description: '内存键值存储，数据结构丰富', popularity: 'high' },
+      { name: 'RocksDB', description: '嵌入键值存储，LSM树，高写入', popularity: 'high' },
+      { name: 'Memcached', description: '纯内存缓存，简单高效', popularity: 'medium' },
+    ]
+  },
+  {
+    id: 'timeseries',
+    name: '时序数据库',
+    icon: '📈',
+    color: '#0085C4',
+    problem: '监控指标与IoT时序数据',
+    description: '专为时间序列数据优化，高写入压缩，支持时间窗口查询，适用于监控、IoT场景。',
+    mainstream: [
+      { name: 'InfluxDB', description: '时序数据库标杆，InfluxQL/Flux查询', popularity: 'high' },
+      { name: 'TimescaleDB', description: 'PostgreSQL时序扩展，SQL能力', popularity: 'high' },
+      { name: 'Prometheus', description: '云原生监控，Pull模式，K8s原生', popularity: 'high' },
+    ]
+  },
+  {
+    id: 'vector',
+    name: '向量数据库',
+    icon: '🔮',
+    color: '#7B68EE',
+    problem: 'AI向量检索与大模型语义搜索',
+    description: '专为向量嵌入设计，支持十亿级向量相似度搜索，是RAG和AI应用的核心基础设施。',
+    mainstream: [
+      { name: 'Milvus', description: '开源向量数据库，十亿级支持', popularity: 'high' },
+      { name: 'Qdrant', description: '高性能向量检索，Rust实现', popularity: 'rising' },
+      { name: 'Weaviate', description: '向量搜索引擎，GraphQL API', popularity: 'rising' },
+      { name: 'Pinecone', description: '托管向量数据库，完全托管', popularity: 'high' },
+    ]
+  },
+  {
+    id: 'graph',
+    name: '图数据库',
+    icon: '🕸️',
+    color: '#0081CB',
+    problem: '复杂关系与图遍历查询',
+    description: '原生图存储与计算，社交网络、推荐系统、风控反欺诈等复杂关联场景的核心技术。',
+    mainstream: [
+      { name: 'Neo4j', description: '最成熟的图数据库，Cypher查询', popularity: 'high' },
+      { name: 'TuGraph', description: '蚂蚁集团开源，高性能，国产', popularity: 'medium' },
+      { name: 'Nebula Graph', description: '分布式图数据库，支持Cypher', popularity: 'rising' },
+      { name: 'JanusGraph', description: 'Apache顶级项目，Berkeley DB后端', popularity: 'medium' },
+    ]
+  },
+  {
+    id: 'object-storage',
+    name: '对象存储',
+    icon: '🗄️',
+    color: '#5C5C5C',
+    problem: '海量非结构化文件存储',
+    description: 'S3兼容接口，弹性扩展，适合文件、图片、视频、日志等非结构化数据的存储与分发。',
+    mainstream: [
+      { name: 'MinIO', description: '高性能对象存储，K8s原生', popularity: 'high' },
+      { name: 'Ceph', description: '统一存储系统，对象/块/文件', popularity: 'high' },
+      { name: 'AWS S3', description: '云对象存储事实标准', popularity: 'high' },
+      { name: 'Cloudflare R2', description: 'S3兼容，零 egress 费用', popularity: 'rising' },
+    ]
+  },
+]
 
 export default function StoragePage() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedSubcategory, setSelectedSubcategory] = useState<string>('all')
-  const [sortBy, setSortBy] = useState<SortOption>('score')
-  const [viewMode, setViewMode] = useState<ViewMode>('grid')
-
-  const allStorageTech = getTechByCategory('storage')
-  const subcategories = ['all', ...Object.keys(subcategoryLabels).filter(k => k !== 'all')]
-
-  const filteredTech = useMemo(() => {
-    let result = [...allStorageTech]
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase()
-      result = result.filter(tech =>
-        tech.name.toLowerCase().includes(query) ||
-        tech.description.toLowerCase().includes(query) ||
-        tech.subcategory.toLowerCase().includes(query)
-      )
-    }
-    if (selectedSubcategory !== 'all') {
-      result = result.filter(tech => tech.subcategory === selectedSubcategory)
-    }
-    result.sort((a, b) => {
-      switch (sortBy) {
-        case 'score': return b.scores.total - a.scores.total
-        case 'name': return a.name.localeCompare(b.name)
-        case 'popularity': return b.scores.popularity - a.scores.popularity
-        case 'maintenance': return b.scores.maintenance - a.scores.maintenance
-        case 'ecosystem': return b.scores.ecosystem - a.scores.ecosystem
-        default: return 0
-      }
-    })
-    return result
-  }, [allStorageTech, searchQuery, selectedSubcategory, sortBy])
-
   const {
     currentData,
     currentPage,
@@ -88,113 +127,38 @@ export default function StoragePage() {
     pageSizeOptions,
     setPage,
     setPageSize,
-  } = usePagination(filteredTech, { initialPageSize: 12 })
-
-  useEffect(() => {
-    setPage(1)
-  }, [searchQuery, selectedSubcategory, sortBy, setPage])
+  } = usePagination(storageCategories, { initialPageSize: 10 })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-orange-900/20 dark:to-red-900/20">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <Database className="w-12 h-12 text-orange-500" />
-            <h1 className="text-4xl md:text-5xl font-bold">
-              <span className="bg-gradient-to-r from-orange-600 via-red-600 to-amber-600 bg-clip-text text-transparent">
-                存储技术栈
-              </span>
-            </h1>
-          </div>
-          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            关系型与非关系型存储，覆盖数据库、列式存储、时序、向量等全场景
+    <div className="page-container">
+      <div className="page-content">
+        <div className="page-header">
+          <h1 className="page-title">存储技术栈全景图</h1>
+          <p className="page-subtitle">
+            了解存储各项技术的核心价值，掌握关系型、列式、文档、键值、时序、向量、图等全场景存储选型
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <StatCard value={allStorageTech.length} label="存储技术" color="orange" />
-          <StatCard value={subcategories.length - 1} label="子分类" color="red" />
-          <StatCard value={Math.round(allStorageTech.reduce((acc, t) => acc + t.scores.total, 0) / allStorageTech.length)} label="平均评分" color="amber" />
-          <StatCard value={allStorageTech.filter(t => t.popularity.githubStars >= 20000).length} label="热门技术" color="green" />
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 mb-8">
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <Input
-                placeholder="搜索存储技术..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-12"
-              />
-            </div>
-            <div className="flex gap-2">
-              <Button variant={viewMode === 'grid' ? 'default' : 'outline'} size="icon" onClick={() => setViewMode('grid')}>
-                <LayoutGrid className="w-5 h-5" />
-              </Button>
-              <Button variant={viewMode === 'list' ? 'default' : 'outline'} size="icon" onClick={() => setViewMode('list')}>
-                <List className="w-5 h-5" />
-              </Button>
-            </div>
+        <div className="legend-container">
+          <div className="legend-item">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="text-sm text-slate-400">主流 - 广泛采用</span>
           </div>
-
-          <Tabs value={selectedSubcategory} onValueChange={setSelectedSubcategory} className="mb-4">
-            <TabsList className="flex flex-wrap h-auto gap-2 bg-transparent p-0">
-              {subcategories.map((sub) => (
-                <TabsTrigger key={sub} value={sub} className="data-[state=active]:bg-orange-600 data-[state=active]:text-white px-4 py-2 rounded-full border">
-                  {subcategoryLabels[sub] || sub}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
-
-          <div className="flex flex-col md:flex-row gap-4">
-            <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
-              <SelectTrigger className="w-full md:w-[200px]">
-                <ArrowUpDown className="w-4 h-4 mr-2" />
-                <SelectValue placeholder="排序方式" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="score">综合评分</SelectItem>
-                <SelectItem value="name">名称</SelectItem>
-                <SelectItem value="popularity">流行度</SelectItem>
-                <SelectItem value="maintenance">维护活跃度</SelectItem>
-                <SelectItem value="ecosystem">生态系统</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="legend-item">
+            <span className="w-2 h-2 rounded-full bg-amber-500" />
+            <span className="text-sm text-slate-400">常用 - 稳定使用</span>
+          </div>
+          <div className="legend-item">
+            <span className="w-2 h-2 rounded-full bg-purple-500" />
+            <span className="text-sm text-slate-400">新星 - 快速崛起</span>
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-4">
-          <div className="text-gray-600 dark:text-gray-400">
-            找到 <span className="font-bold text-orange-600">{totalItems}</span> 个存储技术
-          </div>
-          <Link
-            href="/tech-stack"
-            className="inline-flex items-center text-sm text-gray-500 hover:text-blue-600 transition-colors"
-          >
-            查看全部技术
-          </Link>
+        <div className="tech-grid">
+          {currentData.map((category) => (
+            <TechCategoryCard key={category.id} category={category} />
+          ))}
         </div>
-
-        {viewMode === 'grid' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {currentData.map((tech) => <StorageTechCard key={tech.id} tech={tech} />)}
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {currentData.map((tech) => <StorageListItem key={tech.id} tech={tech} />)}
-          </div>
-        )}
-
-        {currentData.length === 0 && (
-          <div className="text-center py-16">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">未找到相关技术</h3>
-            <p className="text-gray-500">尝试调整搜索词或筛选条件</p>
-          </div>
-        )}
 
         <PaginationControl
           currentPage={currentPage}
@@ -204,119 +168,15 @@ export default function StoragePage() {
           pageSizeOptions={pageSizeOptions}
           onPageChange={setPage}
           onPageSizeChange={setPageSize}
-          className="mt-8"
+          className="mt-6"
         />
 
-        <div className="text-center mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <p className="text-gray-500 dark:text-gray-400 text-sm">💡 选择存储技术需考虑数据模型、扩展性、性能和运维成本</p>
+        <div className="footer-note">
+          <p className="text-sm text-slate-500 m-0">
+            💡 点击卡片可展开查看更多技术 | 存储选型应结合数据模型、扩展性、一致性需求和运维成本综合考量
+          </p>
         </div>
       </div>
     </div>
-  )
-}
-
-function StatCard({ value, label, color }: { value: number; label: string; color: 'orange' | 'red' | 'amber' | 'green' }) {
-  const colorClasses = {
-    orange: 'text-orange-600 dark:text-orange-400',
-    red: 'text-red-600 dark:text-red-400',
-    amber: 'text-amber-600 dark:text-amber-400',
-    green: 'text-green-600 dark:text-green-400',
-  }
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-lg border border-gray-100 dark:border-gray-700">
-      <div className={`text-3xl font-bold mb-1 ${colorClasses[color]}`}>{value}</div>
-      <div className="text-gray-500 dark:text-gray-400 text-sm">{label}</div>
-    </div>
-  )
-}
-
-function StorageTechCard({ tech }: { tech: TechDetail }) {
-  return (
-    <Link href={`/tech-stack/${tech.id}`}>
-      <div className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 cursor-pointer h-full flex flex-col">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-lg">
-              {tech.name.charAt(0)}
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                {tech.name}
-              </h3>
-              <div className="flex items-center gap-2 mt-1">
-                <Badge variant="secondary" className="text-xs">{subcategoryLabels[tech.subcategory] || tech.subcategory}</Badge>
-                <span className="text-xs text-gray-400">v{tech.version}</span>
-              </div>
-            </div>
-          </div>
-          <ScoreBadge score={tech.scores.total} showStars={false} />
-        </div>
-
-        <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2 flex-grow">
-          {tech.tagline}
-        </p>
-
-        <div className="grid grid-cols-3 gap-2 mb-4">
-          <ScoreItem label="流行度" value={tech.scores.popularity} color="orange" />
-          <ScoreItem label="维护" value={tech.scores.maintenance} color="green" />
-          <ScoreItem label="生态" value={tech.scores.ecosystem} color="purple" />
-        </div>
-
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
-          <div className="flex items-center gap-1 text-sm text-gray-500">
-            <TrendingUp className="w-4 h-4" />
-            <span>{tech.popularity.githubStars >= 1000 ? `${(tech.popularity.githubStars / 1000).toFixed(1)}k` : tech.popularity.githubStars} stars</span>
-          </div>
-          <div className="flex items-center gap-1 text-sm text-orange-600 group-hover:translate-x-1 transition-transform">
-            查看详情 <ChevronRight className="w-4 h-4" />
-          </div>
-        </div>
-      </div>
-    </Link>
-  )
-}
-
-function ScoreItem({ label, value, color }: { label: string; value: number; color: 'orange' | 'green' | 'purple' }) {
-  const colorClasses = { orange: 'text-orange-600', green: 'text-green-600', purple: 'text-purple-600' }
-  return (
-    <div className="text-center p-2 bg-gray-50 dark:bg-gray-700 rounded-lg">
-      <div className="text-xs text-gray-400 mb-1">{label}</div>
-      <div className={`text-sm font-semibold ${colorClasses[color]}`}>{value}</div>
-    </div>
-  )
-}
-
-function StorageListItem({ tech }: { tech: TechDetail }) {
-  return (
-    <Link href={`/tech-stack/${tech.id}`}>
-      <div className="group bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-300 cursor-pointer">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-            {tech.name.charAt(0)}
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-3 mb-1">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                {tech.name}
-              </h3>
-              <Badge variant="secondary" className="text-xs">{subcategoryLabels[tech.subcategory] || tech.subcategory}</Badge>
-              <span className="text-xs text-gray-400">v{tech.version}</span>
-            </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-1">{tech.tagline}</p>
-          </div>
-          <div className="flex items-center gap-6 flex-shrink-0">
-            <div className="text-center">
-              <div className="text-xs text-gray-400 mb-1">综合评分</div>
-              <ScoreBadge score={tech.scores.total} showStars={false} />
-            </div>
-            <div className="text-center hidden sm:block">
-              <div className="text-xs text-gray-400 mb-1">流行度</div>
-              <div className="text-sm font-semibold text-orange-600">{tech.scores.popularity}</div>
-            </div>
-            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-orange-600 group-hover:translate-x-1 transition-all" />
-          </div>
-        </div>
-      </div>
-    </Link>
   )
 }
