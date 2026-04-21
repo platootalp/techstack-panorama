@@ -216,6 +216,15 @@ export const techScoreData: Record<string, TechScores> = {
     total: 84,
     lastCalculated: '2025-02-15T10:00:00Z'
   },
+  textual: {
+    popularity: 82,
+    maintenance: 92,
+    ecosystem: 78,
+    learningCurve: 75,
+    enterpriseAdoption: 70,
+    total: 82,
+    lastCalculated: '2025-02-15T10:00:00Z'
+  },
 
   // ===== Go Technologies =====
   gin: {

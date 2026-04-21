@@ -1786,6 +1786,62 @@ export const techDatabase: Record<string, TechDetail> = {
     )
   },
 
+  textual: {
+    id: 'textual',
+    name: 'Textual',
+    category: 'backend',
+    subcategory: 'TUI框架',
+    description: 'Python 的现代化终端用户界面(TUI)框架，用于构建复杂的交互式终端应用程序',
+    tagline: '为终端构建精美的用户界面',
+    version: '0.52.0',
+    pros: ['声明式UI', '响应式布局', 'CSS样式', '丰富组件', '事件驱动', '动画支持', '与Rich集成'],
+    cons: ['学习曲线陡峭', '仅Python 3.8+', '资源占用较高', '终端兼容性'],
+    bestFor: ['终端仪表盘', '数据可视化工具', '命令行IDE', '交互式配置工具', '实时监控界面'],
+    notFor: ['简单脚本', '资源受限环境', '需要GUI的应用'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 78,
+    popularity: { githubStars: 24000 },
+    companyUsers: ['Textualize', 'Prefect', 'Robocorp', 'Snowflake', 'OpenBB'],
+    createdYear: 2021,
+    maintainedBy: 'Will McGugan (Textualize)',
+    officialUrl: 'https://textual.textualize.io',
+    githubUrl: 'https://github.com/Textualize/textual',
+    documentationUrl: 'https://textual.textualize.io',
+    alternatives: ['urwid', 'blessed', 'npyscreen', 'rich'],
+    scores: {
+      popularity: 82, maintenance: 92, ecosystem: 78, learningCurve: 75, enterpriseAdoption: 70,
+      total: 82, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: createDeepDive(
+      [
+        { title: '声明式UI', description: '使用类React的声明式语法构建界面，支持组件化和状态管理。' },
+        { title: 'CSS样式系统', description: '支持类似CSS的选择器和样式规则，轻松定义组件外观。' },
+        { title: '响应式布局', description: '内置网格、水平/垂直布局，支持窗口大小变化的自适应。' },
+        { title: '丰富组件库', description: '提供按钮、输入框、表格、树形控件、选项卡、模态框等40+组件。' },
+        { title: '事件系统', description: '完整的消息传递和事件处理机制，支持键盘和鼠标交互。' }
+      ],
+      [
+        { type: 'official', title: 'Textual 文档', url: 'https://textual.textualize.io', description: '官方文档' },
+        { type: 'tutorial', title: 'Textual 教程', url: 'https://textual.textualize.io/tutorial/', description: '官方教程' },
+        { type: 'community', title: 'Textual GitHub', url: 'https://github.com/Textualize/textual', description: '源码和示例' }
+      ],
+      [
+        { category: '最佳实践', items: ['使用Screen管理多页面', '合理使用reactive状态', '利用CSS分离样式', '使用工作线程处理耗时操作'] }
+      ],
+      [
+        { techId: 'rich', techName: 'Rich', strengths: ['更简单', '输出格式化', '广泛兼容'], weaknesses: ['非交互式', '无布局系统', '无事件处理'], whenToChoose: '仅需美化输出，无需交互' },
+        { techId: 'prompt-toolkit', techName: 'prompt_toolkit', strengths: ['更成熟', 'REPL工具', '底层控制'], weaknesses: ['学习曲线', '样式能力弱', '布局有限'], whenToChoose: '构建REPL或命令行编辑器' }
+      ],
+      [
+        { scenario: '终端仪表盘', description: '实时数据监控面板', recommended: true },
+        { scenario: '交互式CLI', description: '需要复杂用户交互的命令行工具', recommended: true },
+        { scenario: '简单日志输出', description: '仅需打印彩色日志', recommended: false },
+        { scenario: 'GUI应用', description: '需要原生图形界面', recommended: false }
+      ]
+    )
+  },
+
   // ===== Go Core Technologies =====
   echo: {
     id: 'echo',
