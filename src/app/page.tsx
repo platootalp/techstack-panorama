@@ -77,6 +77,15 @@ const techModules = [
     iconColor: 'text-blue-500 dark:text-blue-400',
     tags: ['Kubernetes', 'PostgreSQL', 'Redis', 'Kafka']
   },
+  {
+    title: '存储技术栈',
+    href: '/storage',
+    icon: Database,
+    description: '关系型与非关系型存储，覆盖数据库、列式存储、时序、向量等',
+    gradient: 'from-orange-500/10 to-red-500/10',
+    iconColor: 'text-orange-500 dark:text-orange-400',
+    tags: ['PostgreSQL', 'Redis', 'ClickHouse', 'MongoDB']
+  },
 ]
 
 // 服务端组件 - 无需 'use client'

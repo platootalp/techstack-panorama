@@ -2327,6 +2327,822 @@ export const techDatabase: Record<string, TechDetail> = {
     deepDive: axumDeepDive
   },
 
+  // ===== Storage Technologies =====
+
+  // ----- 关系型数据库 (relational) -----
+  postgresql: {
+    id: 'postgresql',
+    name: 'PostgreSQL',
+    category: 'storage',
+    subcategory: 'relational',
+    description: '功能强大的开源关系型数据库，支持复杂的 SQL 查询、事务、扩展性强',
+    tagline: '功能强大的开源关系型数据库',
+    version: '16.x',
+    pros: ['强大的 SQL 支持', '丰富的扩展生态', 'MVCC 并发控制', 'JSON 支持'],
+    cons: ['配置复杂', '默认性能保守', '学习曲线较陡'],
+    bestFor: ['企业级应用', '复杂查询', 'GIS 应用'],
+    notFor: ['简单的 KV 存储', '极高并发写入'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 95,
+    popularity: { githubStars: 11000 },
+    companyUsers: ['Apple', 'Instagram', 'Spotify', 'Uber'],
+    createdYear: 1996,
+    maintainedBy: 'PostgreSQL Global Development Group',
+    officialUrl: 'https://www.postgresql.org',
+    githubUrl: 'https://github.com/postgres/postgres',
+    documentationUrl: 'https://www.postgresql.org/docs/',
+    alternatives: ['mysql', 'tidb', 'cockroachdb'],
+    scores: {
+      popularity: 92, maintenance: 95, ecosystem: 95, learningCurve: 70, enterpriseAdoption: 98,
+      total: 91, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: 'ACID 事务', description: '完整的事务支持，保证数据一致性和持久性。' },
+        { title: 'MVCC', description: '多版本并发控制，读写不阻塞。' },
+        { title: '扩展性', description: '支持自定义类型、函数、索引方法。' },
+        { title: 'JSON 支持', description: '同时支持传统关系型和 JSON 文档存储。' }
+      ],
+      resources: [
+        { type: 'official', title: 'PostgreSQL 文档', url: 'https://www.postgresql.org/docs/', description: '官方文档' },
+        { type: 'community', title: 'PG 玩家俱乐部', url: 'https://www.postgresql.org/community/', description: '社区' }
+      ],
+      bestPractices: [
+        { category: '配置优化', items: ['合理配置 shared_buffers', '启用 WAL', '配置合适的 checkpoint'] },
+        { category: '索引使用', items: ['避免过度索引', '使用 EXPLAIN 分析', '考虑部分索引'] }
+      ],
+      comparisons: [
+        { techId: 'mysql', techName: 'MySQL', strengths: ['更简单', '互联网应用广泛'], weaknesses: ['SQL 标准支持差', '扩展性有限'], whenToChoose: 'Web 应用' }
+      ],
+      useCases: [
+        { scenario: '企业级应用', description: '金融、保险等需要强一致性的系统', recommended: true },
+        { scenario: '数据分析', description: '复杂查询和数据仓库', recommended: true }
+      ]
+    }
+  },
+
+  mysql: {
+    id: 'mysql',
+    name: 'MySQL',
+    category: 'storage',
+    subcategory: 'relational',
+    description: '广泛使用的关系型数据库，高可靠性，开源生态成熟',
+    tagline: '广泛使用的关系型数据库',
+    version: '8.0',
+    pros: ['生态成熟', '性能优秀', '运维简单', '兼容性好'],
+    cons: ['SQL 标准支持一般', '复杂查询性能差', '默认配置保守'],
+    bestFor: ['Web 应用', '互联网产品', '中小型系统'],
+    notFor: ['复杂分析查询', '事务密集型应用'],
+    learningCurve: 'beginner',
+    ecosystemScore: 98,
+    popularity: { githubStars: 9500 },
+    companyUsers: ['Google', 'Meta', 'Twitter', 'Alibaba'],
+    createdYear: 1995,
+    maintainedBy: 'Oracle',
+    officialUrl: 'https://www.mysql.com',
+    githubUrl: 'https://github.com/mysql/mysql-server',
+    documentationUrl: 'https://dev.mysql.com/doc/',
+    alternatives: ['postgresql', 'mariadb', 'tidb'],
+    scores: {
+      popularity: 95, maintenance: 88, ecosystem: 98, learningCurve: 85, enterpriseAdoption: 95,
+      total: 92, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: 'InnoDB 引擎', description: '支持事务和行级锁，高并发处理能力强。' },
+        { title: '复制机制', description: '支持主从、半同步、GTID 等多种复制方式。' },
+        { title: '分区表', description: '支持 RANGE、LIST、HASH 分区。' },
+        { title: 'JSON 函数', description: 'MySQL 8.0 增强的 JSON 支持。' }
+      ],
+      resources: [
+        { type: 'official', title: 'MySQL 文档', url: 'https://dev.mysql.com/doc/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: 'SQL 优化', items: ['避免 SELECT *', '使用 EXPLAIN 分析', '合理创建索引'] }
+      ],
+      comparisons: [
+        { techId: 'postgresql', techName: 'PostgreSQL', strengths: ['SQL 标准支持好', '扩展性强'], weaknesses: ['配置复杂', '性能保守'], whenToChoose: '需要复杂查询时' }
+      ],
+      useCases: [
+        { scenario: '互联网应用', description: '社交、电商、游戏后端', recommended: true },
+        { scenario: 'CMS 内容管理', description: 'WordPress、Drupal 等', recommended: true }
+      ]
+    }
+  },
+
+  tidb: {
+    id: 'tidb',
+    name: 'TiDB',
+    category: 'storage',
+    subcategory: 'relational',
+    description: '分布式 NewSQL 数据库，兼容 MySQL 协议，支持水平扩展',
+    tagline: '分布式 NewSQL 数据库',
+    version: '8.0',
+    pros: ['水平扩展', '强一致性', 'MySQL 兼容', 'HTAP 能力'],
+    cons: ['运维复杂', '资源消耗大', '特定场景性能不如专用数据库'],
+    bestFor: ['大规模 OLTP', '需要强一致性的 OLAP', '分库分表场景'],
+    notFor: ['极低延迟场景', '简单小规模应用'],
+    learningCurve: 'advanced',
+    ecosystemScore: 78,
+    popularity: { githubStars: 35000 },
+    companyUsers: ['ByteDance', 'Tencent', 'Xiaomi', 'Shopee'],
+    createdYear: 2017,
+    maintainedBy: 'PingCAP',
+    officialUrl: 'https://pingcap.com/tidb',
+    githubUrl: 'https://github.com/pingcap/tidb',
+    documentationUrl: 'https://docs.pingcap.com/tidb/',
+    alternatives: ['cockroachdb', 'oceanbase'],
+    scores: {
+      popularity: 85, maintenance: 82, ecosystem: 78, learningCurve: 60, enterpriseAdoption: 75,
+      total: 79, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '水平扩展', description: '支持在线水平扩展，自动数据均衡。' },
+        { title: '强一致性', description: '基于 Raft 的分布式事务，保证 ACID。' },
+        { title: 'MySQL 兼容', description: '协议级兼容，现有应用零改动迁移。' },
+        { title: 'HTAP', description: '同时支持事务处理和分析查询。' }
+      ],
+      resources: [
+        { type: 'official', title: 'TiDB 文档', url: 'https://docs.pingcap.com/tidb/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '部署', items: ['使用 TiUP 部署', '配置合理的 TiKV 数量', '开启 Placement Driver'] }
+      ],
+      comparisons: [
+        { techId: 'cockroachdb', techName: 'CockroachDB', strengths: ['国内生态好', '中文文档完善'], weaknesses: ['国际知名度较低'], whenToChoose: '国内团队' }
+      ],
+      useCases: [
+        { scenario: '金融级应用', description: '银行、保险等需要强一致性', recommended: true },
+        { scenario: '电商大促', description: '应对突发流量', recommended: true }
+      ]
+    }
+  },
+
+  // ----- 列式存储 (columnar) -----
+  clickhouse: {
+    id: 'clickhouse',
+    name: 'ClickHouse',
+    category: 'storage',
+    subcategory: 'columnar',
+    description: '列式分析数据库，高速 OLAP 查询，万亿级数据秒级响应',
+    tagline: '高速列式分析数据库',
+    version: '24.x',
+    pros: ['查询速度快', '压缩率高', '向量化执行', 'SQL 支持好'],
+    cons: ['写入性能一般', '事务支持弱', '运维复杂'],
+    bestFor: ['OLAP', '日志分析', '用户行为分析'],
+    notFor: ['OLTP', '需要事务的场景', '小数据量'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 75,
+    popularity: { githubStars: 39000 },
+    companyUsers: ['ByteDance', 'Tencent', 'Alibaba', 'Cloudflare'],
+    createdYear: 2016,
+    maintainedBy: 'ClickHouse Inc.',
+    officialUrl: 'https://clickhouse.com',
+    githubUrl: 'https://github.com/ClickHouse/ClickHouse',
+    documentationUrl: 'https://clickhouse.com/docs/',
+    alternatives: ['druid', 'starrocks', ' Pinot'],
+    scores: {
+      popularity: 90, maintenance: 88, ecosystem: 75, learningCurve: 70, enterpriseAdoption: 80,
+      total: 83, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '列式存储', description: '数据按列存储，聚合查询极快。' },
+        { title: '向量化执行', description: 'SIMD 指令集，CPU 利用率高。' },
+        { title: '压缩算法', description: '多种压缩算法，存储成本低。' },
+        { title: '分布式', description: '原生分布式，多机并行。' }
+      ],
+      resources: [
+        { type: 'official', title: 'ClickHouse 文档', url: 'https://clickhouse.com/docs/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '建模', items: ['使用 MergeTree 表引擎', '合理设计稀疏索引', '避免 NULL'] }
+      ],
+      comparisons: [
+        { techId: 'druid', techName: 'Apache Druid', strengths: ['实时写入强', '支持数据摄入'], weaknesses: ['SQL 支持较弱'], whenToChoose: '需要实时摄入时' }
+      ],
+      useCases: [
+        { scenario: '用户行为分析', description: '埋点数据、点击流分析', recommended: true },
+        { scenario: '日志分析', description: '业务日志、安全日志', recommended: true }
+      ]
+    }
+  },
+
+  hbase: {
+    id: 'hbase',
+    name: 'HBase',
+    category: 'storage',
+    subcategory: 'columnar',
+    description: 'BigTable 类型的列式存储，构建在 HDFS 之上，适合随机读写',
+    tagline: 'BigTable 类型列式存储',
+    version: '2.5',
+    pros: ['高扩展', '高写入', '稀疏数据支持', 'Hadoop 生态'],
+    cons: ['延迟高', '运维复杂', '不支持 SQL'],
+    bestFor: ['海量数据写入', '随机读写', 'Hadoop 集成'],
+    notFor: ['低延迟场景', '复杂查询', '事务需求'],
+    learningCurve: 'advanced',
+    ecosystemScore: 72,
+    popularity: { githubStars: 7000 },
+    companyUsers: ['Google', 'Facebook', 'Tencent', 'Alibaba'],
+    createdYear: 2007,
+    maintainedBy: 'Apache Software Foundation',
+    officialUrl: 'https://hbase.apache.org',
+    githubUrl: 'https://github.com/apache/hbase',
+    documentationUrl: 'https://hbase.apache.org/book.html',
+    alternatives: ['cassandra', 'dynamodb'],
+    scores: {
+      popularity: 72, maintenance: 75, ecosystem: 72, learningCurve: 55, enterpriseAdoption: 78,
+      total: 71, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '列式存储', description: 'Wide-Column 模型，适合稀疏数据。' },
+        { title: '高扩展', description: '基于 HDFS，水平扩展简单。' },
+        { title: '随机读写', description: '毫秒级延迟的随机读写能力。' },
+        { title: '一致性', description: '强一致性保证。' }
+      ],
+      resources: [
+        { type: 'official', title: 'HBase 文档', url: 'https://hbase.apache.org/book.html', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: 'RowKey 设计', items: ['避免热点', '利用 RowKey 排序', '适当冗余字段'] }
+      ],
+      comparisons: [
+        { techId: 'cassandra', techName: 'Cassandra', strengths: ['CAP 理论灵活', '无单点'], weaknesses: ['最终一致性'], whenToChoose: '需要高可用时' }
+      ],
+      useCases: [
+        { scenario: '用户画像', description: '海量用户特征存储', recommended: true },
+        { scenario: '消息存储', description: '聊天记录、订单历史', recommended: true }
+      ]
+    }
+  },
+
+  druid: {
+    id: 'druid',
+    name: 'Apache Druid',
+    category: 'storage',
+    subcategory: 'columnar',
+    description: '实时分析列式存储，支持高并发摄入和低延迟查询',
+    tagline: '实时分析列式存储',
+    version: '30.x',
+    pros: ['实时摄入', '低延迟查询', '高并发', '多数据源支持'],
+    cons: ['运维复杂', '资源消耗大', '冷启动慢'],
+    bestFor: ['实时分析', '指标存储', 'BI 应用'],
+    notFor: ['事务写入', '复杂关联查询'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 70,
+    popularity: { githubStars: 24000 },
+    companyUsers: ['Airbnb', 'Netflix', 'Uber', 'Alibaba'],
+    createdYear: 2012,
+    maintainedBy: 'Apache Software Foundation',
+    officialUrl: 'https://druid.apache.org',
+    githubUrl: 'https://github.com/apache/druid',
+    documentationUrl: 'https://druid.apache.org/docs/latest/',
+    alternatives: ['clickhouse', 'pinot'],
+    scores: {
+      popularity: 78, maintenance: 80, ecosystem: 70, learningCurve: 65, enterpriseAdoption: 72,
+      total: 75, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '实时摄入', description: 'Kafka、Streams 实时摄入，秒级可见。' },
+        { title: '低延迟查询', description: 'Sub-second 级别查询响应。' },
+        { title: '水平扩展', description: '支持快速水平扩展。' },
+        { title: '多数据源', description: 'Kafka、HDFS、S3 等多种摄入源。' }
+      ],
+      resources: [
+        { type: 'official', title: 'Druid 文档', url: 'https://druid.apache.org/docs/latest/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '数据建模', items: ['合理设计 Segment', '配置合适的 Roll-up', '分区策略'] }
+      ],
+      comparisons: [
+        { techId: 'clickhouse', techName: 'ClickHouse', strengths: ['查询性能好', '压缩率高'], weaknesses: ['实时摄入弱'], whenToChoose: '查询为主时' }
+      ],
+      useCases: [
+        { scenario: '实时大屏', description: '业务指标实时展示', recommended: true },
+        { scenario: '广告分析', description: '广告投放效果分析', recommended: true }
+      ]
+    }
+  },
+
+  starrocks: {
+    id: 'starrocks',
+    name: 'StarRocks',
+    category: 'storage',
+    subcategory: 'columnar',
+    description: '现代化向量化列式存储，超高速 OLAP 查询能力',
+    tagline: '现代化向量化列式存储',
+    version: '3.2',
+    pros: ['向量化执行', '全面向量化', '高性能', '简化运维'],
+    cons: ['生态较新', '社区相对小', '特定功能在完善'],
+    bestFor: ['OLAP', '数据湖分析', '高并发查询'],
+    notFor: ['OLTP', '需要强一致性'],
+    learningCurve: 'beginner',
+    ecosystemScore: 68,
+    popularity: { githubStars: 12000 },
+    companyUsers: ['ByteDance', 'Tencent', 'Alibaba', 'Xiaomi'],
+    createdYear: 2020,
+    maintainedBy: 'StarRocks Community',
+    officialUrl: 'https://starrocks.io',
+    githubUrl: 'https://github.com/StarRocks/starrocks',
+    documentationUrl: 'https://docs.starrocks.io/',
+    alternatives: ['clickhouse', 'duckdb'],
+    scores: {
+      popularity: 75, maintenance: 82, ecosystem: 68, learningCurve: 75, enterpriseAdoption: 65,
+      total: 74, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '全面向量化', description: '所有算子向量化执行，极致性能。' },
+        { title: '物化视图', description: '自动化的物化视图，加速查询。' },
+        { title: '数据湖集成', description: '直读 Iceberg、Hudi、Delta Lake。' },
+        { title: '现代化架构', description: '简化设计，易于运维。' }
+      ],
+      resources: [
+        { type: 'official', title: 'StarRocks 文档', url: 'https://docs.starrocks.io/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '表设计', items: ['使用星型模型', '合理分布键', '使用物化视图'] }
+      ],
+      comparisons: [
+        { techId: 'clickhouse', techName: 'ClickHouse', strengths: ['社区成熟', '生态丰富'], weaknesses: ['运维复杂'], whenToChoose: '需要简单运维时' }
+      ],
+      useCases: [
+        { scenario: '实时 BI', description: '秒级 BI 分析', recommended: true },
+        { scenario: '数据湖查询', description: '直接查询数据湖', recommended: true }
+      ]
+    }
+  },
+
+  // ----- 文档数据库 (document) -----
+  mongodb: {
+    id: 'mongodb',
+    name: 'MongoDB',
+    category: 'storage',
+    subcategory: 'document',
+    description: '文档数据库，灵活的 JSON 模型，易于扩展',
+    tagline: '灵活的文档数据库',
+    version: '7.0',
+    pros: ['灵活的模型', '易于扩展', '丰富的查询', '成熟稳定'],
+    cons: ['内存消耗大', '复杂查询性能一般', '事务支持有限'],
+    bestFor: ['内容管理', '实时分析', '物联网数据'],
+    notFor: ['复杂关联查询', '强事务场景'],
+    learningCurve: 'beginner',
+    ecosystemScore: 92,
+    popularity: { githubStars: 26000 },
+    companyUsers: ['Google', 'Meta', 'eBay', 'Airbnb'],
+    createdYear: 2009,
+    maintainedBy: 'MongoDB Inc.',
+    officialUrl: 'https://www.mongodb.com',
+    githubUrl: 'https://github.com/mongodb/mongo',
+    documentationUrl: 'https://www.mongodb.com/docs/',
+    alternatives: ['dynamodb', 'couchbase'],
+    scores: {
+      popularity: 92, maintenance: 88, ecosystem: 92, learningCurve: 80, enterpriseAdoption: 90,
+      total: 89, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '文档模型', description: '灵活的 JSON 文档，无需预定义结构。' },
+        { title: '索引', description: '支持多种索引类型，全文、地理空间等。' },
+        { title: '复制集', description: '自动故障转移，数据冗余。' },
+        { title: '分片', description: '水平扩展，支持海量数据。' }
+      ],
+      resources: [
+        { type: 'official', title: 'MongoDB 文档', url: 'https://www.mongodb.com/docs/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '建模', items: ['嵌入式 vs 引用', '避免过度嵌套', '合理使用索引'] }
+      ],
+      comparisons: [
+        { techId: 'dynamodb', techName: 'DynamoDB', strengths: ['AWS 集成', '完全托管'], weaknesses: ['厂商锁定', '灵活性差'], whenToChoose: '在 AWS 上时' }
+      ],
+      useCases: [
+        { scenario: '内容管理', description: 'CMS、产品目录', recommended: true },
+        { scenario: '实时分析', description: '用户行为分析', recommended: true }
+      ]
+    }
+  },
+
+  // ----- 键值存储 (key-value) -----
+  redis: {
+    id: 'redis',
+    name: 'Redis',
+    category: 'storage',
+    subcategory: 'key-value',
+    description: '内存键值存储，高性能缓存，支持多种数据结构',
+    tagline: '高性能内存键值存储',
+    version: '7.4',
+    pros: ['性能极高', '丰富数据结构', '主从复制', '集群支持'],
+    cons: ['内存限制', '持久化开销', '单线程限制'],
+    bestFor: ['缓存', '会话存储', '实时榜单'],
+    notFor: ['持久化存储', '海量冷数据'],
+    learningCurve: 'beginner',
+    ecosystemScore: 98,
+    popularity: { githubStars: 68000 },
+    companyUsers: ['Google', 'Amazon', 'Alibaba', 'Tencent'],
+    createdYear: 2009,
+    maintainedBy: 'Redis Ltd.',
+    officialUrl: 'https://redis.io',
+    githubUrl: 'https://github.com/redis/redis',
+    documentationUrl: 'https://redis.io/docs/',
+    alternatives: ['memcached', 'rocksdb'],
+    scores: {
+      popularity: 98, maintenance: 95, ecosystem: 98, learningCurve: 85, enterpriseAdoption: 98,
+      total: 96, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '多种数据结构', description: 'String、Hash、List、Set、ZSet 等。' },
+        { title: '内存存储', description: '极低延迟，纳秒级响应。' },
+        { title: '持久化', description: 'RDB、AOF 两种持久化方式。' },
+        { title: '集群', description: '支持主从、哨兵、集群模式。' }
+      ],
+      resources: [
+        { type: 'official', title: 'Redis 文档', url: 'https://redis.io/docs/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '使用场景', items: ['缓存而非数据库', '合理设置 TTL', '避免大 key'] }
+      ],
+      comparisons: [
+        { techId: 'memcached', techName: 'Memcached', strengths: ['简单', '内存效率高'], weaknesses: ['数据结构单一'], whenToChoose: '简单缓存时' }
+      ],
+      useCases: [
+        { scenario: '缓存', description: '热点数据缓存，加速访问', recommended: true },
+        { scenario: '会话存储', description: '分布式会话', recommended: true },
+        { scenario: '实时榜单', description: '游戏排行、投票', recommended: true }
+      ]
+    }
+  },
+
+  rocksdb: {
+    id: 'rocksdb',
+    name: 'RocksDB',
+    category: 'storage',
+    subcategory: 'key-value',
+    description: '嵌入键值存储，LSM 树结构，高写入性能',
+    tagline: '高性能嵌入键值存储',
+    version: '9.x',
+    pros: ['高写入性能', '嵌入部署', '可配置调优', 'Flash 优化'],
+    cons: ['读取延迟不稳定', '内存消耗大', '运维困难'],
+    bestFor: ['嵌入应用', '日志存储', '时间序列'],
+    notFor: ['通用数据库', '需要 SQL'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 72,
+    popularity: { githubStars: 30000 },
+    companyUsers: ['Facebook', 'Google', 'LinkedIn', 'Netflix'],
+    createdYear: 2012,
+    maintainedBy: 'Meta',
+    officialUrl: 'https://rocksdb.org',
+    githubUrl: 'https://github.com/facebook/rocksdb',
+    documentationUrl: 'https://rocksdb.org/docs/',
+    alternatives: ['leveldb', 'badger'],
+    scores: {
+      popularity: 80, maintenance: 85, ecosystem: 72, learningCurve: 65, enterpriseAdoption: 78,
+      total: 77, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: 'LSM 树', description: 'Log-Structured Merge-Tree，高写入吞吐。' },
+        { title: '灵活配置', description: '可配置压缩、缓存、bloom filter。' },
+        { title: 'Flash 优化', description: '针对 SSD/Flash 存储优化。' },
+        { title: '嵌入部署', description: '零依赖，适合嵌入式场景。' }
+      ],
+      resources: [
+        { type: 'official', title: 'RocksDB 文档', url: 'https://rocksdb.org/docs/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '配置', items: ['根据数据量配置 write_buffer_size', '选择合适的压缩算法'] }
+      ],
+      comparisons: [
+        { techId: 'leveldb', techName: 'LevelDB', strengths: ['Google 出品', '简单'], weaknesses: ['性能较差'], whenToChoose: '简单场景' }
+      ],
+      useCases: [
+        { scenario: 'Kafka 存储', description: 'Kafka 使用 RocksDB 存储', recommended: true },
+        { scenario: '日志存储', description: '数据库 WAL', recommended: true }
+      ]
+    }
+  },
+
+  // ----- 时序数据库 (timeseries) -----
+  influxdb: {
+    id: 'influxdb',
+    name: 'InfluxDB',
+    category: 'storage',
+    subcategory: 'timeseries',
+    description: '时序数据库，专为监控和 IoT 场景优化，高写入性能',
+    tagline: '时序数据库',
+    version: '2.7',
+    pros: ['时序优化', '高写入', 'InfluxQL/Flux', '可视化'],
+    cons: ['v2 版本变化大', '学习曲线', 'License 变更'],
+    bestFor: ['监控指标', 'IoT 数据', '应用性能监控'],
+    notFor: ['通用存储', '需要复杂关联'],
+    learningCurve: 'beginner',
+    ecosystemScore: 80,
+    popularity: { githubStars: 28000 },
+    companyUsers: ['IBM', 'Cisco', 'Siemens', 'Bloomberg'],
+    createdYear: 2013,
+    maintainedBy: 'InfluxData',
+    officialUrl: 'https://www.influxdata.com',
+    githubUrl: 'https://github.com/influxdata/influxdb',
+    documentationUrl: 'https://docs.influxdata.com/',
+    alternatives: ['timescale', 'prometheus'],
+    scores: {
+      popularity: 80, maintenance: 75, ecosystem: 80, learningCurve: 75, enterpriseAdoption: 72,
+      total: 77, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '时序数据模型', description: 'Tag、Field、Timestamp，优化的时序存储。' },
+        { title: '高写入', description: '支持百万级数据点每秒写入。' },
+        { title: 'Downsampling', description: '自动数据聚合，减少存储。' },
+        { title: 'Flux 语言', description: '强大的数据处理脚本语言。' }
+      ],
+      resources: [
+        { type: 'official', title: 'InfluxDB 文档', url: 'https://docs.influxdata.com/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '建模', items: ['避免高基数 tag', '合理设计 retention policy', '使用 TSI 索引'] }
+      ],
+      comparisons: [
+        { techId: 'timescale', techName: 'TimescaleDB', strengths: ['SQL 支持', 'PostgreSQL 生态'], weaknesses: ['写入性能低'], whenToChoose: '需要 SQL 时' }
+      ],
+      useCases: [
+        { scenario: '监控', description: 'APM、系统监控', recommended: true },
+        { scenario: 'IoT', description: '传感器数据采集', recommended: true }
+      ]
+    }
+  },
+
+  timescale: {
+    id: 'timescale',
+    name: 'TimescaleDB',
+    category: 'storage',
+    subcategory: 'timeseries',
+    description: '基于 PostgreSQL 的时序数据库，结合关系型和时序特性',
+    tagline: 'PostgreSQL 时序扩展',
+    version: '2.14',
+    pros: ['SQL 支持', 'PostgreSQL 兼容', '压缩率高', '生态丰富'],
+    cons: ['写入性能不如专用时序库', '扩展性有限'],
+    bestFor: ['时序+关系混合', '需要 SQL 的时序分析'],
+    notFor: ['超高写入场景', '需要强扩展'],
+    learningCurve: 'beginner',
+    ecosystemScore: 75,
+    popularity: { githubStars: 22000 },
+    companyUsers: ['AWS', 'Comcast', 'Booz Allen Hamilton'],
+    createdYear: 2017,
+    maintainedBy: 'Timescale Inc.',
+    officialUrl: 'https://www.timescale.com',
+    githubUrl: 'https://github.com/timescale/timescaledb',
+    documentationUrl: 'https://docs.timescale.com/',
+    alternatives: ['influxdb', 'clickhouse'],
+    scores: {
+      popularity: 75, maintenance: 82, ecosystem: 75, learningCurve: 80, enterpriseAdoption: 68,
+      total: 76, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: 'Hypertables', description: '自动分区的时间序列表。' },
+        { title: 'Compression', description: '高压缩率，存储成本降低 90%。' },
+        { title: 'Continuous Aggregates', description: '自动物化视图，预聚合。' },
+        { title: 'PostgreSQL 兼容', description: '完全兼容 PostgreSQL 协议和语法。' }
+      ],
+      resources: [
+        { type: 'official', title: 'TimescaleDB 文档', url: 'https://docs.timescale.com/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '配置', items: ['启用压缩', '合理设置 chunk 时间', '使用 continuous aggregate'] }
+      ],
+      comparisons: [
+        { techId: 'influxdb', techName: 'InfluxDB', strengths: ['专用时序', '高写入'], weaknesses: ['SQL 支持差'], whenToChoose: '需要高写入时' }
+      ],
+      useCases: [
+        { scenario: '金融数据', description: '股票、交易数据存储分析', recommended: true },
+        { scenario: 'DevOps 监控', description: '服务器指标存储', recommended: true }
+      ]
+    }
+  },
+
+  // ----- 向量数据库 (vector) -----
+  milvus: {
+    id: 'milvus',
+    name: 'Milvus',
+    category: 'storage',
+    subcategory: 'vector',
+    description: '开源向量数据库，支持十亿级向量检索，AI 应用首选',
+    tagline: '开源向量数据库',
+    version: '2.4',
+    pros: ['高性能检索', '十亿级支持', '多索引类型', '云原生'],
+    cons: ['运维复杂', '资源消耗大', '生态仍在完善'],
+    bestFor: ['AI 检索', '相似度搜索', 'RAG 应用'],
+    notFor: ['简单 KV', '需要强事务'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 78,
+    popularity: { githubStars: 30000 },
+    companyUsers: ['NVIDIA', 'Tencent', 'ByteDance', '小米'],
+    createdYear: 2019,
+    maintainedBy: 'Zilliz',
+    officialUrl: 'https://milvus.io',
+    githubUrl: 'https://github.com/milvus-io/milvus',
+    documentationUrl: 'https://milvus.io/docs/',
+    alternatives: ['qdrant', 'weaviate'],
+    scores: {
+      popularity: 82, maintenance: 85, ecosystem: 78, learningCurve: 65, enterpriseAdoption: 72,
+      total: 79, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '向量索引', description: '支持 IVF、HNSW、DiskANN 等多种索引。' },
+        { title: '分布式', description: '水平扩展，支持海量向量。' },
+        { title: '混合检索', description: '同时支持向量和标量过滤。' },
+        { title: '多语言 SDK', description: 'Python、Go、Java 等多语言支持。' }
+      ],
+      resources: [
+        { type: 'official', title: 'Milvus 文档', url: 'https://milvus.io/docs/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '建模', items: ['选择合适索引类型', '合理配置 nlist', '批处理写入'] }
+      ],
+      comparisons: [
+        { techId: 'qdrant', techName: 'Qdrant', strengths: ['Rust 实现', '性能好'], weaknesses: ['社区较小'], whenToChoose: '需要高性能时' }
+      ],
+      useCases: [
+        { scenario: 'RAG', description: '检索增强生成', recommended: true },
+        { scenario: '以图搜图', description: '商品、人物检索', recommended: true },
+        { scenario: '推荐系统', description: '相似 item 推荐', recommended: true }
+      ]
+    }
+  },
+
+  // ----- 图数据库 (graph) -----
+  neo4j: {
+    id: 'neo4j',
+    name: 'Neo4j',
+    category: 'storage',
+    subcategory: 'graph',
+    description: '属性图模型图数据库，强大的图遍历能力，社交和推荐场景',
+    tagline: '属性图数据库',
+    version: '5.x',
+    pros: ['图遍历快', 'Cypher 查询', '成熟稳定', '生态完善'],
+    cons: ['分布式支持有限', '资源消耗大', '扩展性一般'],
+    bestFor: ['社交网络', '知识图谱', '推荐系统'],
+    notFor: ['简单 KV', '超大规模数据'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 82,
+    popularity: { githubStars: 15000 },
+    companyUsers: ['Microsoft', 'Airbnb', 'eBay', 'IBM'],
+    createdYear: 2007,
+    maintainedBy: 'Neo4j Inc.',
+    officialUrl: 'https://neo4j.com',
+    githubUrl: 'https://github.com/neo4j/neo4j',
+    documentationUrl: 'https://neo4j.com/docs/',
+    alternatives: ['tugraph', 'nebula'],
+    scores: {
+      popularity: 80, maintenance: 82, ecosystem: 82, learningCurve: 70, enterpriseAdoption: 85,
+      total: 80, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '属性图', description: '节点和边都可带属性，灵活建模。' },
+        { title: 'Cypher', description: '声明式图查询语言，表达力强。' },
+        { title: 'ACID 事务', description: '强一致性保证。' },
+        { title: '图算法', description: '内置 PageRank、社群发现等算法。' }
+      ],
+      resources: [
+        { type: 'official', title: 'Neo4j 文档', url: 'https://neo4j.com/docs/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '建模', items: ['避免过深关系', '合理使用标签', '创建索引加速查询'] }
+      ],
+      comparisons: [
+        { techId: 'tugraph', techName: 'TuGraph', strengths: ['高性能', '国内支持好'], weaknesses: ['生态较小'], whenToChoose: '国内项目' }
+      ],
+      useCases: [
+        { scenario: '社交网络', description: '好友推荐、关系分析', recommended: true },
+        { scenario: '知识图谱', description: '企业知识管理', recommended: true },
+        { scenario: '反欺诈', description: '关联分析检测欺诈', recommended: true }
+      ]
+    }
+  },
+
+  tugraph: {
+    id: 'tugraph',
+    name: 'TuGraph',
+    category: 'storage',
+    subcategory: 'graph',
+    description: '蚂蚁集团开源的高性能图数据库，支撑支付宝等核心业务',
+    tagline: '高性能图数据库',
+    version: '4.x',
+    pros: ['高性能', '水平扩展', '兼容 Cypher', '国内支持'],
+    cons: ['社区较小', '文档不够完善', '国际生态有限'],
+    bestFor: ['金融风控', '社交分析', '大规模图计算'],
+    notFor: ['简单场景', '需要国际化生态'],
+    learningCurve: 'intermediate',
+    ecosystemScore: 65,
+    popularity: { githubStars: 8000 },
+    companyUsers: ['Ant Group', 'Alibaba', 'Tencent'],
+    createdYear: 2018,
+    maintainedBy: 'Ant Group',
+    officialUrl: 'https://www.tugraph.org',
+    githubUrl: 'https://github.com/TuGraph-family/tugraph',
+    documentationUrl: 'https://tugraph.readthedocs.io/',
+    alternatives: ['neo4j', 'nebula'],
+    scores: {
+      popularity: 65, maintenance: 78, ecosystem: 65, learningCurve: 65, enterpriseAdoption: 70,
+      total: 68, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: '高性能', description: '支持每秒百万级边遍历。' },
+        { title: '分布式', description: '水平扩展，支持万亿级边。' },
+        { title: '兼容 Cypher', description: '兼容 openCypher 协议。' },
+        { title: '可视化', description: '内置图可视化工具。' }
+      ],
+      resources: [
+        { type: 'official', title: 'TuGraph 文档', url: 'https://tugraph.readthedocs.io/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '建模', items: ['合理设计顶点类型', '避免超级节点', '使用属性索引'] }
+      ],
+      comparisons: [
+        { techId: 'neo4j', techName: 'Neo4j', strengths: ['生态成熟', '社区大'], weaknesses: ['性能一般'], whenToChoose: '需要国际化时' }
+      ],
+      useCases: [
+        { scenario: '金融风控', description: '实时风险识别', recommended: true },
+        { scenario: '反洗钱', description: '资金链路分析', recommended: true }
+      ]
+    }
+  },
+
+  // ----- 对象存储 (object-storage) -----
+  minio: {
+    id: 'minio',
+    name: 'MinIO',
+    category: 'storage',
+    subcategory: 'object-storage',
+    description: 'S3 兼容对象存储，Kubernetes 原生，高性能分布式存储',
+    tagline: 'S3 兼容对象存储',
+    version: 'RELEASE.2024',
+    pros: ['S3 兼容', '高性能', 'Kubernetes 原生', '简单部署'],
+    cons: ['功能比 AWS S3 少', '文档有限', '需要自己运维'],
+    bestFor: ['私有云存储', 'AI/ML 数据湖', 'MinIO 替代方案'],
+    notFor: ['需要高级 S3 功能', '完全托管'],
+    learningCurve: 'beginner',
+    ecosystemScore: 75,
+    popularity: { githubStars: 45000 },
+    companyUsers: ['ByteDance', 'Tencent', 'Alibaba', 'IBM'],
+    createdYear: 2015,
+    maintainedBy: 'MinIO Inc.',
+    officialUrl: 'https://min.io',
+    githubUrl: 'https://github.com/minio/minio',
+    documentationUrl: 'https://min.io/docs/',
+    alternatives: ['ceph', 'aws-s3'],
+    scores: {
+      popularity: 85, maintenance: 88, ecosystem: 75, learningCurve: 80, enterpriseAdoption: 78,
+      total: 82, lastCalculated: '2025-02-15T10:00:00Z'
+    },
+    status: 'active',
+    deepDive: {
+      features: [
+        { title: 'S3 兼容', description: '兼容 S3 API，现有应用零改动。' },
+        { title: '高性能', description: '高速读写，NVMe 优化。' },
+        { title: 'Kubernetes 原生', description: 'Operator 部署，Operator-Lifecycle Manager。' },
+        { title: '纠删码', description: '高可用，分布式恢复。' }
+      ],
+      resources: [
+        { type: 'official', title: 'MinIO 文档', url: 'https://min.io/docs/', description: '官方文档' }
+      ],
+      bestPractices: [
+        { category: '部署', items: ['使用 Operator 部署', '配置纠删码模式', '使用 LoadBalancer'] }
+      ],
+      comparisons: [
+        { techId: 'ceph', techName: 'Ceph', strengths: ['功能全面', '社区成熟'], weaknesses: ['复杂', '资源消耗大'], whenToChoose: '需要完整存储方案时' }
+      ],
+      useCases: [
+        { scenario: 'AI 数据湖', description: '存储训练数据', recommended: true },
+        { scenario: '备份归档', description: '冷数据存储', recommended: true },
+        { scenario: '私有云存储', description: '替代公有云 S3', recommended: true }
+      ]
+    }
+  },
+
   // ===== LLM算法 Technologies =====
   ...llmAlgorithmData,
 
